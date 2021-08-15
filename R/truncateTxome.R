@@ -24,7 +24,7 @@ setGeneric("truncateTxome", signature=c("txdb", "maxTxLength"),
 #' @importFrom BiocParallel bplapply
 #' @importFrom AnnotationDbi select
 setMethod("truncateTxome", "TxDb", function(txdb, maxTxLength=500) {
-  grlExons <- exonsBy(txdb, use.names=TRUE)[1:100]
+  grlExons <- exonsBy(txdb, use.names=TRUE)
   dfTxGene <- select(txdb, keys=names(grlExons),
                      keytype="TXNAME", columns="GENEID")
   mapTxToGene <- setNames(dfTxGene$GENEID, dfTxGene$TXNAME)
