@@ -13,7 +13,7 @@ setGeneric(".mutateEach", signature=c("grl"),
 setMethod(".mutateEach", "CompressedGRangesList",
           function (grl, ...) {
             ## ensure data is a valid length
-            inputLengths <- sapply(list(...), length, USE.NAMES=TRUE)
+            inputLengths <- vapply(list(...), length, integer(1), USE.NAMES=TRUE)
             if (!all(inputLengths == length(grl))) {
               stop("Mismatched lengths detected:\n",
                    "\tExpected length ", length(grl),
