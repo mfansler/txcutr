@@ -158,8 +158,8 @@ setMethod("truncateTxome", "TxDb", function(txdb, maxTxLength=500) {
 #'
 #' @details The validation assumes seqnames and strand are \code{Rle} objects.
 #'
-#' @importFrom GenomicRanges seqnames start end strand reduce
-#'
+#' @importFrom GenomicRanges seqnames start end strand reduce start<- end<-
+#' @importFrom S4Vectors nrun
 .fillReduce <- function (gr, validate=TRUE) {
   if (validate) {
     stopifnot(nrun(seqnames(gr)) ==  1,

@@ -12,7 +12,7 @@
 #'
 #' @importFrom GenomicRanges mcols GRangesList
 #' @importFrom GenomicFeatures exons transcripts genes
-#' @importFrom S4Vectors expand
+#' @importFrom S4Vectors expand mcols<-
 txdbToGRangesList <- function (txdb,
                                geneCols=c("gene_id"),
                                transcriptCols=c("gene_id", "tx_name"),

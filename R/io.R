@@ -10,6 +10,7 @@
 #'
 #' @importFrom rtracklayer export
 #' @importFrom BiocGenerics which paste
+#' @importFrom S4Vectors mcols<-
 exportGTF <- function (txdb, file, source="txcutr") {
   grl <- txdbToGRangesList(txdb)
 
