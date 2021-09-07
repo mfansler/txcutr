@@ -5,6 +5,7 @@
 #' @param txdb transcriptome to be output
 #' @param file location to write GTF
 #' @param source a string to go in the \code{source} column
+#' @return The \code{txdb} argument is invisibly returned.
 #'
 #' @export
 #'
@@ -41,6 +42,8 @@ exportGTF <- function (txdb, file, source="txcutr") {
   if (length(idxRev) > 0) {
     export(sort(grl$exons[idxRev], decreasing=TRUE), file, format="GTF", append=TRUE)
   }
+
+  invisible(txdb)
 }
 
 
@@ -49,6 +52,7 @@ exportGTF <- function (txdb, file, source="txcutr") {
 #' @param txdb a \code{TxDb} object representing a transcriptome annotation
 #' @param genome a \code{BSgenome} object from which to extract sequences
 #' @param file output FASTA file
+#' @return The \code{txdb} argument is invisibly returned.
 #'
 #' @export
 #'
@@ -57,4 +61,5 @@ exportGTF <- function (txdb, file, source="txcutr") {
 exportFASTA <- function (txdb, genome, file) {
   seqs <- extractTranscriptSeqs(genome, txdb, use.names=TRUE)
   writeXStringSet(seqs, file, format="fasta")
+  invisible(txdb)
 }

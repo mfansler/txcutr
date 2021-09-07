@@ -1,3 +1,4 @@
+#' @importFrom methods setGeneric
 setGeneric(".mutateEach", signature=c("grl"),
            function(grl, ...) standardGeneric(".mutateEach"))
 
@@ -10,6 +11,7 @@ setGeneric(".mutateEach", signature=c("grl"),
 #' @return a \code{CompressedGRangesList} with all element \code{GRanges} updated
 #' with supplied metadata columns
 #'
+#' @importFrom methods setMethod
 setMethod(".mutateEach", "CompressedGRangesList",
           function (grl, ...) {
             ## ensure data is a valid length
@@ -27,6 +29,7 @@ setMethod(".mutateEach", "CompressedGRangesList",
           }
 )
 
+#' @importFrom methods setMethod
 setMethod(".mutateEach", "SimpleGRangesList",
           function (grl, ...) .mutateEach(GRangesList(grl, compress=TRUE), ...)
 )

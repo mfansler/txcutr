@@ -13,6 +13,9 @@ exportFASTA(txdb, genome, file)
 
 \item{file}{output FASTA file}
 }
+\value{
+The \code{txdb} argument is invisibly returned.
+}
 \description{
 Export Transcriptome as FASTA
 }

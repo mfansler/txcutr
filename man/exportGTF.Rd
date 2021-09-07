@@ -13,6 +13,9 @@ exportGTF(txdb, file, source = "txcutr")
 
 \item{source}{a string to go in the \code{source} column}
 }
+\value{
+The \code{txdb} argument is invisibly returned.
+}
 \description{
 Exports a TxDb annotation to a GTF file
 }

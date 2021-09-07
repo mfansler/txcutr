@@ -5,6 +5,8 @@
 #'
 #' @return a \code{TxDb} object
 #' @export
+#'
+#' @importFrom methods setGeneric
 setGeneric("truncateTxome", signature=c("txdb", "maxTxLength"),
            function(txdb, maxTxLength=500, ...) standardGeneric("truncateTxome")
 )
@@ -23,6 +25,7 @@ setGeneric("truncateTxome", signature=c("txdb", "maxTxLength"),
 #' @importFrom GenomicFeatures exonsBy
 #' @importFrom BiocParallel bplapply
 #' @importFrom AnnotationDbi select
+#' @importFrom methods setMethod
 setMethod("truncateTxome", "TxDb", function(txdb, maxTxLength=500) {
   grlExons <- exonsBy(txdb, use.names=TRUE)
   dfTxGene <- select(txdb, keys=names(grlExons),
@@ -173,22 +176,22 @@ setMethod("truncateTxome", "TxDb", function(txdb, maxTxLength=500) {
   reduce(gr)
 }
 
-.getMergeTable <- function (txdb, minDiff, retainASE=TRUE) {
-  grlExons <- exonsBy(txdb, use.names=TRUE)
-
-  overlaps <- findOverlaps(grlExons, minoverlap=maxTxLength, ignore.strand=FALSE)
-  dfOverlaps <- as.data.frame(overlaps)
-  dfOverlaps['queryName'] <- names(grlExons)[dfOverlaps$queryHits]
-  dfOverlaps['subjectName'] <- names(grlExons)[dfOverlaps$subjectHits]
-
-
-  if (retainASE) {
-    idxOverlapping <- union(queryHits(overlaps), subjectHits(overlaps))
-
-    overlapsASE <- findOverlaps(grlExons[idxOverlapping],
-                                minoverlap=maxTxLength,
-                                ignore.strand=FALSE, type="end",
-                                drop.self=TRUE, drop.redundant=TRUE)
-  }
-}
+# .getMergeTable <- function (txdb, minDiff, retainASE=TRUE) {
+#   grlExons <- exonsBy(txdb, use.names=TRUE)
+#
+#   overlaps <- findOverlaps(grlExons, minoverlap=maxTxLength, ignore.strand=FALSE)
+#   dfOverlaps <- as.data.frame(overlaps)
+#   dfOverlaps['queryName'] <- names(grlExons)[dfOverlaps$queryHits]
+#   dfOverlaps['subjectName'] <- names(grlExons)[dfOverlaps$subjectHits]
+#
+#
+#   if (retainASE) {
+#     idxOverlapping <- union(queryHits(overlaps), subjectHits(overlaps))
+#
+#     overlapsASE <- findOverlaps(grlExons[idxOverlapping],
+#                                 minoverlap=maxTxLength,
+#                                 ignore.strand=FALSE, type="end",
+#                                 drop.self=TRUE, drop.redundant=TRUE)
+#   }
+# }
 
