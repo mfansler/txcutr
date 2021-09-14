@@ -14,18 +14,19 @@ setGeneric(".mutateEach", signature=c("grl"),
 #' @importFrom methods setMethod
 setMethod(".mutateEach", "CompressedGRangesList",
           function (grl, ...) {
-            ## ensure data is a valid length
-            inputLengths <- vapply(list(...), length, integer(1), USE.NAMES=TRUE)
-            if (!all(inputLengths == length(grl))) {
-              stop("Mismatched lengths detected:\n",
-                   "\tExpected length ", length(grl),
-                   ", but found length(s) ", capture.output(dput(inputLengths)))
-            }
+              ## ensure data is a valid length
+              inputLengths <- vapply(list(...), length, integer(1), USE.NAMES=TRUE)
+              if (!all(inputLengths == length(grl))) {
+                stop("Mismatched lengths detected:\n",
+                     "\tExpected length ", length(grl),
+                     ", but found length(s) ",
+                     capture.output(dput(inputLengths)))
+              }
 
-            ## expand list to full length
-            expandedListData <- lapply(list(...), rep, times=elementNROWS(grl))
-            mcols(slot(grl, "unlistData"))[names(list(...))] <- expandedListData
-            grl
+              ## expand list to full length
+              expandedListData <- lapply(list(...), rep, times=elementNROWS(grl))
+              mcols(slot(grl, "unlistData"))[names(list(...))] <- expandedListData
+              grl
           }
 )
 

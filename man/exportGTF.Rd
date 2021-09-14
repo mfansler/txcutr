@@ -19,3 +19,18 @@ The \code{txdb} argument is invisibly returned.
 \description{
 Exports a TxDb annotation to a GTF file
 }
+\examples{
+library(GenomicFeatures)
+
+## create TxDb using SGD genes for sacCer3 genome from UCSC
+txdb <- makeTxDbFromUCSC("sacCer3", "sgdGene")
+
+## restrict to 'chrI' transcripts
+seqlevels(txdb) <- c("chrI")
+
+## last 500 nts per tx
+txdb_w500 <- truncateTxome(txdb)
+
+exportGTF(txdb_w500, "sacCer3.sgdGene.w500.gtf")
+
+}

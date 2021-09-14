@@ -24,3 +24,19 @@ a \code{TxDb} object
 \description{
 Truncate Transcriptome
 }
+\examples{
+library(GenomicFeatures)
+
+## create TxDb using SGD genes for sacCer3 genome from UCSC
+txdb <- makeTxDbFromUCSC("sacCer3", "sgdGene")
+
+## restrict to 'chrI' transcripts
+seqlevels(txdb) <- c("chrI")
+
+## last 500 nts per tx
+txdb_w500 <- truncateTxome(txdb)
+
+## last 100 nts per tx
+txdb_w100 <- truncateTxome(txdb, maxTxLength=100)
+
+}

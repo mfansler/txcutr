@@ -19,3 +19,22 @@ The \code{txdb} argument is invisibly returned.
 \description{
 Export Transcriptome as FASTA
 }
+\examples{
+library(GenomicFeatures)
+library(BSGenome)
+
+## create TxDb using SGD genes for sacCer3 genome from UCSC
+txdb <- makeTxDbFromUCSC("sacCer3", "sgdGene")
+
+## retrieve sacCer3 sequence as BSGenome object
+sacCer3 <- getBSgenome("sacCer3")
+
+## restrict to 'chrI' transcripts (makes for briefer example runtime)
+seqlevels(txdb) <- c("chrI")
+
+## last 500 nts per tx
+txdb_w500 <- truncateTxome(txdb)
+
+exportFASTA(txdb_w500, sacCer3, "sacCer3.sgdGene.w500.fa")
+
+}
