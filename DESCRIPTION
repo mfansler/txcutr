@@ -38,5 +38,6 @@ Suggests:
     BiocStyle,
     knitr,
     sessioninfo,
-    rmarkdown
+    rmarkdown,
+    testthat
 VignetteBuilder: knitr
