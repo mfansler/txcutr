@@ -71,12 +71,12 @@ exportGTF <- function (txdb, file, source="txcutr") {
 #'
 #' @examples
 #' library(GenomicFeatures)
-#' library(BSGenome)
+#' library(BSgenome)
 #'
 #' ## create TxDb using SGD genes for sacCer3 genome from UCSC
 #' txdb <- makeTxDbFromUCSC("sacCer3", "sgdGene")
 #'
-#' ## retrieve sacCer3 sequence as BSGenome object
+#' ## retrieve sacCer3 sequence as BSgenome object
 #' sacCer3 <- getBSgenome("sacCer3")
 #'
 #' ## restrict to 'chrI' transcripts (makes for briefer example runtime)
