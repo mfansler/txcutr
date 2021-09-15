@@ -30,10 +30,11 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 biocViews: 
     Annotation,
-    Transcriptomics, 
+    Transcriptomics,
     RNASeq
 Suggests: 
     RMariaDB,
+    BSgenome,
     RefManageR,
     BiocStyle,
     knitr,
