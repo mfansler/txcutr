@@ -34,11 +34,11 @@ biocViews:
     RNASeq
 Suggests: 
     RMariaDB,
-    BSgenome,
     RefManageR,
     BiocStyle,
     knitr,
     sessioninfo,
     rmarkdown,
-    testthat
+    testthat,
+    BSgenome.Scerevisiae.UCSC.sacCer3
 VignetteBuilder: knitr
