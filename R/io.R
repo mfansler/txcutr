@@ -8,10 +8,10 @@
 #' @return The \code{txdb} argument is invisibly returned.
 #'
 #' @examples
-#' library(GenomicFeatures)
+#' library(TxDb.Scerevisiae.UCSC.sacCer3.sgdGene)
 #'
-#' ## create TxDb using SGD genes for sacCer3 genome from UCSC
-#' txdb <- makeTxDbFromUCSC("sacCer3", "sgdGene")
+#' ## load annotation
+#' txdb <- TxDb.Scerevisiae.UCSC.sacCer3.sgdGene
 #'
 #' ## restrict to 'chrI' transcripts
 #' seqlevels(txdb) <- c("chrI")
@@ -70,14 +70,12 @@ exportGTF <- function (txdb, file, source="txcutr") {
 #' @return The \code{txdb} argument is invisibly returned.
 #'
 #' @examples
-#' library(GenomicFeatures)
-#' library(BSgenome)
+#' library(TxDb.Scerevisiae.UCSC.sacCer3.sgdGene)
+#' library(BSgenome.Scerevisiae.UCSC.sacCer3)
 #'
-#' ## create TxDb using SGD genes for sacCer3 genome from UCSC
-#' txdb <- makeTxDbFromUCSC("sacCer3", "sgdGene")
-#'
-#' ## retrieve sacCer3 sequence as BSgenome object
-#' sacCer3 <- getBSgenome("sacCer3")
+#' ## load annotation and genome
+#' txdb <- TxDb.Scerevisiae.UCSC.sacCer3.sgdGene
+#' sacCer3 <- BSgenome.Scerevisiae.UCSC.sacCer3
 #'
 #' ## restrict to 'chrI' transcripts (makes for briefer example runtime)
 #' seqlevels(txdb) <- c("chrI")

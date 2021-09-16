@@ -21,19 +21,21 @@ setGeneric("truncateTxome", signature=c("txdb", "maxTxLength"),
 #' @return a \code{TxDb} object
 #'
 #' @examples
-#' library(GenomicFeatures)
+#' library(TxDb.Scerevisiae.UCSC.sacCer3.sgdGene)
 #'
-#' ## create TxDb using SGD genes for sacCer3 genome from UCSC
-#' txdb <- makeTxDbFromUCSC("sacCer3", "sgdGene")
+#' ## load annotation
+#' txdb <- TxDb.Scerevisiae.UCSC.sacCer3.sgdGene
 #'
 #' ## restrict to 'chrI' transcripts
 #' seqlevels(txdb) <- c("chrI")
 #'
 #' ## last 500 nts per tx
 #' txdb_w500 <- truncateTxome(txdb)
+#' txdb_w500
 #'
 #' ## last 100 nts per tx
 #' txdb_w100 <- truncateTxome(txdb, maxTxLength=100)
+#' txdb_w100
 #'
 #' @importFrom GenomicRanges GRangesList mcols
 #' @importFrom GenomicFeatures exonsBy

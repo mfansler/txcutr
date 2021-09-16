@@ -40,5 +40,6 @@ Suggests:
     sessioninfo,
     rmarkdown,
     testthat,
+    TxDb.Scerevisiae.UCSC.sacCer3.sgdGene,
     BSgenome.Scerevisiae.UCSC.sacCer3
 VignetteBuilder: knitr

@@ -27,10 +27,10 @@ a \code{GRangesList} object with entries \code{c(genes, transcripts, exons)}
 Convert TxDb object to GRangesList
 }
 \examples{
-library(GenomicFeatures)
+library(TxDb.Scerevisiae.UCSC.sacCer3.sgdGene)
 
-## create TxDb using SGD genes for sacCer3 genome from UCSC
-txdb <- makeTxDbFromUCSC("sacCer3", "sgdGene")
+## load annotation
+txdb <- TxDb.Scerevisiae.UCSC.sacCer3.sgdGene
 
 grl <- txdbToGRangesList(txdb)
 grl
