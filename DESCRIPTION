@@ -6,7 +6,7 @@ Description: Various mRNA sequencing library preparation methods generate
     when assigning such reads to isoforms. This implements some convenience 
     methods for readily generating such truncated annotations and their 
     corresponding sequences.
-Version: 0.1.1
+Version: 0.2.0
 Authors@R: 
     person(given = "Mervin",
            family = "Fansler",
