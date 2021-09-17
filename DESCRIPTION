@@ -38,7 +38,8 @@ Suggests:
     knitr,
     sessioninfo,
     rmarkdown,
-    testthat,
+    testthat (>= 3.0.0),
     TxDb.Scerevisiae.UCSC.sacCer3.sgdGene,
     BSgenome.Scerevisiae.UCSC.sacCer3
 VignetteBuilder: knitr
+Config/testthat/edition: 3
