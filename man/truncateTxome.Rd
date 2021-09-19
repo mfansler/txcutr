@@ -7,7 +7,7 @@
 \usage{
 truncateTxome(txdb, maxTxLength = 500, ...)
 
-\S4method{truncateTxome}{TxDb}(txdb, maxTxLength = 500)
+\S4method{truncateTxome}{TxDb}(txdb, maxTxLength = 500, BPPARAM = bpparam())
 }
 \arguments{
 \item{txdb}{a \code{TxDb} object}
@@ -15,6 +15,9 @@ truncateTxome(txdb, maxTxLength = 500, ...)
 \item{maxTxLength}{the maximum length of transcripts}
 
 \item{...}{additional arguments}
+
+\item{BPPARAM}{A \linkS4class{BiocParallelParam} object specifying whether
+and how the method should be parallelized.}
 }
 \value{
 a \code{TxDb} object

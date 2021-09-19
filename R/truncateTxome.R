@@ -17,7 +17,8 @@ setGeneric("truncateTxome", signature=c("txdb", "maxTxLength"),
 #'
 #' @param txdb a \code{TxDb} object
 #' @param maxTxLength the maximum length of transcripts
-#'
+#' @param BPPARAM A \linkS4class{BiocParallelParam} object specifying whether
+#'   and how the method should be parallelized.
 #' @return a \code{TxDb} object
 #'
 #' @examples
@@ -39,11 +40,13 @@ setGeneric("truncateTxome", signature=c("txdb", "maxTxLength"),
 #'
 #' @importFrom GenomicRanges GRangesList mcols
 #' @importFrom GenomicFeatures exonsBy
-#' @importFrom BiocParallel bplapply
+#' @importFrom BiocParallel bplapply bpparam
 #' @importFrom AnnotationDbi select
 #' @importFrom methods setMethod
 #' @export
-setMethod("truncateTxome", "TxDb", function(txdb, maxTxLength=500) {
+setMethod("truncateTxome", "TxDb", function(txdb,
+                                            maxTxLength=500,
+                                            BPPARAM=bpparam()) {
     grlExons <- exonsBy(txdb, use.names=TRUE)
     dfTxGene <- select(txdb, keys=names(grlExons),
                        keytype="TXNAME", columns="GENEID")
