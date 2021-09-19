@@ -53,7 +53,8 @@ setMethod("truncateTxome", "TxDb", function(txdb,
     mapTxToGene <- setNames(dfTxGene$GENEID, dfTxGene$TXNAME)
 
     message("Truncating transcripts...")
-    clipped <- bplapply(grlExons, .clipTranscript, maxTxLength=maxTxLength)
+    clipped <- bplapply(grlExons, .clipTranscript, maxTxLength=maxTxLength,
+                        BPPARAM=BPPARAM)
     clipped <- GRangesList(clipped)
     message("Done.")
 
@@ -95,7 +96,8 @@ setMethod("truncateTxome", "TxDb", function(txdb,
 
     message("Creating tx ranges...")
     ## generate transcripts GRanges with clipped bounds
-    grTxs <- unlist(GRangesList(bplapply(clipped, .fillReduce)))
+    grTxs <- unlist(GRangesList(bplapply(clipped, .fillReduce,
+                                         BPPARAM=BPPARAM)))
     mcols(grTxs)['transcript_id'] <- names(grTxs)
     mcols(grTxs)["type"] <- "transcript"
 
@@ -105,7 +107,8 @@ setMethod("truncateTxome", "TxDb", function(txdb,
     message("Done.")
 
     message("Creating gene ranges...")
-    grGenes <- unlist(GRangesList(bplapply(split(grTxs, grTxs$gene_id), .fillReduce)))
+    grGenes <- unlist(GRangesList(bplapply(split(grTxs, grTxs$gene_id),
+                                           .fillReduce, BPPARAM=BPPARAM)))
     mcols(grGenes)['gene_id'] <- names(grGenes)
     mcols(grGenes)["type"] <- "gene"
     message("Done.")

@@ -1,3 +1,17 @@
+# txcutr 0.2.2
+
+NEW FEATURES
+
+* None.
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+* None.
+
+BUG FIXES
+
+* The `BPPARAM` was not being passed through to internal `bplapply` calls.
+
 # txcutr 0.2.1
 
 NEW FEATURES
