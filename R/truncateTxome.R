@@ -58,6 +58,15 @@ setMethod("truncateTxome", "TxDb", function(txdb, maxTxLength=500) {
     overlaps <- findOverlaps(clipped, minoverlap=maxTxLength,
                              ignore.strand=FALSE,
                              drop.self=TRUE, drop.redundant=TRUE)
+    ## ensure genes match
+    if (length(overlaps) > 0) {
+      idx_genes_match <- mapply(function (idx1, idx2) {
+        mapTxToGene[names(clipped[idx1])] == mapTxToGene[names(clipped[idx2])]
+      }, idx=queryHits(overlaps), idx2=subjectHits(overlaps))
+      overlaps <- overlaps[idx_genes_match]
+    }
+
+    ## get duplicate indices
     duplicates <- unique(queryHits(overlaps))
     if (length(duplicates) > 0) {
         clipped <- clipped[-duplicates]
