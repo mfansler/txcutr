@@ -54,6 +54,25 @@ setMethod("truncateTxome", "TxDb", function(txdb, maxTxLength=500) {
     clipped <- GRangesList(clipped)
     message("Done.")
 
+    message("Checking for duplicate transcripts...")
+    overlaps <- findOverlaps(clipped, minoverlap=maxTxLength,
+                             ignore.strand=FALSE,
+                             drop.self=TRUE, drop.redundant=TRUE)
+    ## ensure genes match
+    if (length(overlaps) > 0) {
+      idx_genes_match <- mapply(function (idx1, idx2) {
+        mapTxToGene[names(clipped[idx1])] == mapTxToGene[names(clipped[idx2])]
+      }, idx=queryHits(overlaps), idx2=subjectHits(overlaps))
+      overlaps <- overlaps[idx_genes_match]
+    }
+
+    ## get duplicate indices
+    duplicates <- unique(queryHits(overlaps))
+    if (length(duplicates) > 0) {
+        clipped <- clipped[-duplicates]
+    }
+    message(sprintf("Removed %d duplicates.", length(duplicates)))
+
     message("Creating exon ranges...")
     ## flatten with tx_id in metadata
     grExons <- unlist(.mutateEach(clipped, transcript_id=names(clipped)))
@@ -70,11 +89,6 @@ setMethod("truncateTxome", "TxDb", function(txdb, maxTxLength=500) {
     ## TODO: include `exon_rank`
 
     message("Done.")
-
-    # TODO: add option for deduplication
-    # overlaps <- findOverlaps(clipped, minoverlap=maxTxLength,
-    #                          ignore.strand=FALSE,
-    #                          drop.self=TRUE, drop.redundant=TRUE)
 
     message("Creating tx ranges...")
     ## generate transcripts GRanges with clipped bounds
