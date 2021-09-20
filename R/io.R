@@ -93,3 +93,33 @@ exportFASTA <- function (txdb, genome, file) {
     writeXStringSet(seqs, file, format="fasta")
     invisible(txdb)
 }
+
+#' Export Merge Table for Transcriptome
+#'
+#' @param txdb a \code{TxDb} object representing a transcriptome annotation
+#' @param file output TSV file
+#' @param minDistance the minimum separation to regard overlapping transcripts
+#'     as unique.
+#' @return The \code{txdb} argument is invisibly returned.
+#'
+#' @examples
+#' library(TxDb.Scerevisiae.UCSC.sacCer3.sgdGene)
+#'
+#' ## load annotation
+#' txdb <- TxDb.Scerevisiae.UCSC.sacCer3.sgdGene
+#'
+#' ## restrict to 'chrI' transcripts (makes for briefer example runtime)
+#' seqlevels(txdb) <- c("chrI")
+#'
+#' ## last 500 nts per tx
+#' txdb_w500 <- truncateTxome(txdb)
+#'
+#' exportMergeTable(txdb_w500, "sacCer3.sgdGene.w500.merge.tsv")
+#'
+#' @importFrom utils write.table
+#' @export
+exportMergeTable <- function (txdb, file, minDistance=200L) {
+  df <- generateMergeTable(txdb, minDistance=minDistance)
+  write.table(df, file, sep="\t", row.names=FALSE, quote=FALSE)
+  invisible(txdb)
+}

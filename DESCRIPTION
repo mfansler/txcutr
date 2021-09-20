@@ -6,7 +6,7 @@ Description: Various mRNA sequencing library preparation methods generate
     when assigning such reads to isoforms. This implements some convenience 
     methods for readily generating such truncated annotations and their 
     corresponding sequences.
-Version: 0.2.2
+Version: 0.3.0
 Authors@R: 
     person(given = "Mervin",
            family = "Fansler",
@@ -25,7 +25,9 @@ Imports:
     S4Vectors,
     rtracklayer,
     BiocParallel,
-    methods
+    stats,
+    methods,
+    utils
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 biocViews: 
