@@ -9,7 +9,8 @@ exportGTF(txdb, file, source = "txcutr")
 \arguments{
 \item{txdb}{transcriptome to be output}
 
-\item{file}{location to write GTF}
+\item{file}{a string or \code{\link{connection}} to output GTF file.
+Automatically recognizes strings ending with "\strong{.gz}" for zipped output.}
 
 \item{source}{a string to go in the \code{source} column}
 }
@@ -31,6 +32,10 @@ seqlevels(txdb) <- c("chrI")
 ## last 500 nts per tx
 txdb_w500 <- truncateTxome(txdb)
 
+## export uncompressed
 exportGTF(txdb_w500, "sacCer3.sgdGene.w500.gtf")
+
+## export compressed
+exportGTF(txdb_w500, "sacCer3.sgdGene.w500.gtf.gz")
 
 }

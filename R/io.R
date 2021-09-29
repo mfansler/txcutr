@@ -3,7 +3,8 @@
 #' Exports a TxDb annotation to a GTF file
 #'
 #' @param txdb transcriptome to be output
-#' @param file location to write GTF
+#' @param file a string or \code{\link{connection}} to output GTF file.
+#'   Automatically recognizes strings ending with "**.gz**" for zipped output.
 #' @param source a string to go in the \code{source} column
 #' @return The \code{txdb} argument is invisibly returned.
 #'
@@ -19,7 +20,11 @@
 #' ## last 500 nts per tx
 #' txdb_w500 <- truncateTxome(txdb)
 #'
+#' ## export uncompressed
 #' exportGTF(txdb_w500, "sacCer3.sgdGene.w500.gtf")
+#'
+#' ## export compressed
+#' exportGTF(txdb_w500, "sacCer3.sgdGene.w500.gtf.gz")
 #'
 #' @importFrom rtracklayer export
 #' @importFrom BiocGenerics which paste
@@ -48,6 +53,12 @@ exportGTF <- function (txdb, file, source="txcutr") {
     idxRev <- which(strand(grl$exons) == "-")
 
     ## export
+    if (!inherits(file, "connection")) {
+      if (grepl(".gz$", file)) {
+        file <- gzfile(file, "wab")
+        on.exit(close(file))
+      }
+    }
     export(grl$genes, file, format="GTF")
     export(grl$transcripts, file, format="GTF", append=TRUE)
     if (length(idxFwd) > 0) {
@@ -66,7 +77,10 @@ exportGTF <- function (txdb, file, source="txcutr") {
 #'
 #' @param txdb a \code{TxDb} object representing a transcriptome annotation
 #' @param genome a \code{BSgenome} object from which to extract sequences
-#' @param file output FASTA file
+#' @param file a string for output FASTA file. File names ending in "**.gz**"
+#'     will automatically use gzip compression.
+#' @param ... additional arguments to pass through to
+#'     \code{\link[Biostrings]{writeXStringSet}}
 #' @return The \code{txdb} argument is invisibly returned.
 #'
 #' @examples
@@ -83,21 +97,27 @@ exportGTF <- function (txdb, file, source="txcutr") {
 #' ## last 500 nts per tx
 #' txdb_w500 <- truncateTxome(txdb)
 #'
+#' ## export uncompressed
 #' exportFASTA(txdb_w500, sacCer3, "sacCer3.sgdGene.w500.fa")
+#'
+#' ## export compressed
+#' exportFASTA(txdb_w500, sacCer3, "sacCer3.sgdGene.w500.fa.gz")
 #'
 #' @importFrom GenomicFeatures extractTranscriptSeqs
 #' @importFrom Biostrings writeXStringSet
 #' @export
-exportFASTA <- function (txdb, genome, file) {
+exportFASTA <- function (txdb, genome, file, ...) {
     seqs <- extractTranscriptSeqs(genome, txdb, use.names=TRUE)
-    writeXStringSet(seqs, file, format="fasta")
+    compress <- grepl(".gz$", file)
+    writeXStringSet(seqs, file, format="fasta", compress=compress, ...)
     invisible(txdb)
 }
 
 #' Export Merge Table for Transcriptome
 #'
 #' @param txdb a \code{TxDb} object representing a transcriptome annotation
-#' @param file output TSV file
+#' @param file a string or \code{\link{connection}} to output TSV file.
+#'   Automatically recognizes strings ending with "**.gz**" for zipped output.
 #' @param minDistance the minimum separation to regard overlapping transcripts
 #'     as unique.
 #' @return The \code{txdb} argument is invisibly returned.
@@ -114,12 +134,22 @@ exportFASTA <- function (txdb, genome, file) {
 #' ## last 500 nts per tx
 #' txdb_w500 <- truncateTxome(txdb)
 #'
+#' ## export plain format
 #' exportMergeTable(txdb_w500, "sacCer3.sgdGene.w500.merge.tsv")
+#'
+#' ## export compressed format
+#' exportMergeTable(txdb_w500, "sacCer3.sgdGene.w500.merge.tsv.gz")
 #'
 #' @importFrom utils write.table
 #' @export
 exportMergeTable <- function (txdb, file, minDistance=200L) {
   df <- generateMergeTable(txdb, minDistance=minDistance)
+  if (!inherits(file, "connection")) {
+    if (grepl(".gz$", file)) {
+      file <- gzfile(file, "wb")
+      on.exit(close(file))
+    }
+  }
   write.table(df, file, sep="\t", row.names=FALSE, quote=FALSE)
   invisible(txdb)
 }

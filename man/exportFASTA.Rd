@@ -4,14 +4,18 @@
 \alias{exportFASTA}
 \title{Export Transcriptome as FASTA}
 \usage{
-exportFASTA(txdb, genome, file)
+exportFASTA(txdb, genome, file, ...)
 }
 \arguments{
 \item{txdb}{a \code{TxDb} object representing a transcriptome annotation}
 
 \item{genome}{a \code{BSgenome} object from which to extract sequences}
 
-\item{file}{output FASTA file}
+\item{file}{a string for output FASTA file. File names ending in "\strong{.gz}"
+will automatically use gzip compression.}
+
+\item{...}{additional arguments to pass through to
+\code{\link[Biostrings]{writeXStringSet}}}
 }
 \value{
 The \code{txdb} argument is invisibly returned.
@@ -33,6 +37,10 @@ seqlevels(txdb) <- c("chrI")
 ## last 500 nts per tx
 txdb_w500 <- truncateTxome(txdb)
 
+## export uncompressed
 exportFASTA(txdb_w500, sacCer3, "sacCer3.sgdGene.w500.fa")
+
+## export compressed
+exportFASTA(txdb_w500, sacCer3, "sacCer3.sgdGene.w500.fa.gz")
 
 }

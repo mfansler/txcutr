@@ -9,7 +9,8 @@ exportMergeTable(txdb, file, minDistance = 200L)
 \arguments{
 \item{txdb}{a \code{TxDb} object representing a transcriptome annotation}
 
-\item{file}{output TSV file}
+\item{file}{a string or \code{\link{connection}} to output TSV file.
+Automatically recognizes strings ending with "\strong{.gz}" for zipped output.}
 
 \item{minDistance}{the minimum separation to regard overlapping transcripts
 as unique.}
@@ -32,6 +33,10 @@ seqlevels(txdb) <- c("chrI")
 ## last 500 nts per tx
 txdb_w500 <- truncateTxome(txdb)
 
+## export plain format
 exportMergeTable(txdb_w500, "sacCer3.sgdGene.w500.merge.tsv")
+
+## export compressed format
+exportMergeTable(txdb_w500, "sacCer3.sgdGene.w500.merge.tsv.gz")
 
 }
