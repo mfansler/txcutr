@@ -2,3 +2,4 @@
 ^\.Rproj\.user$
 ^conda-recipe$
 ^\.github$
+^README\.Rmd$
