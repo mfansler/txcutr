@@ -1,12 +1,13 @@
 Package: txcutr
-Title: Transcriptome CutUTR
+Title: Transcriptome CUTteR
 Description: Various mRNA sequencing library preparation methods generate 
     sequencing reads from the transcript ends. Quantification of isoform usage 
     can be improved by using truncated versions of transcriptome annotations 
-    when assigning such reads to isoforms. This implements some convenience 
-    methods for readily generating such truncated annotations and their 
-    corresponding sequences.
-Version: 0.3.0
+    when assigning such reads to isoforms. This package implements some 
+    convenience methods for readily generating such truncated annotations and 
+    their corresponding sequences.
+Version: 0.3.1
+Date: 2021-09-29
 Authors@R: 
     person(given = "Mervin",
            family = "Fansler",
