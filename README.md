@@ -7,6 +7,7 @@
 
 [![R build
 status](https://github.com/mfansler/txcutr/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/mfansler/txcutr/actions)
+[![codecov](https://codecov.io/gh/mfansler/txcutr/branch/main/graph/badge.svg?token=CGGZP68G67)](https://codecov.io/gh/mfansler/txcutr)
 [![Anaconda-Server
 Badge](https://anaconda.org/merv/r-txcutr/badges/installer/conda.svg)](https://conda.anaconda.org/merv)
 [![Anaconda-Server
