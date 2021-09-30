@@ -42,6 +42,7 @@ setGeneric("truncateTxome", signature=c("txdb", "maxTxLength"),
 #' @importFrom GenomicFeatures exonsBy
 #' @importFrom BiocParallel bplapply bpparam
 #' @importFrom AnnotationDbi select
+#' @importFrom S4Vectors queryHits subjectHits
 #' @importFrom methods setMethod
 #' @export
 setMethod("truncateTxome", "TxDb", function(txdb,
@@ -216,4 +217,3 @@ setMethod("truncateTxome", "TxDb", function(txdb,
   end(gr) <- max(end(gr))
   reduce(gr)
 }
-
