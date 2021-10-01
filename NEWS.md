@@ -1,17 +1,31 @@
+# txcutr 0.3.2
+
+NEW FEATURES
+
+* Improved vignette
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+* None.
+
+BUG FIXES
+
+* None.
+
 # txcutr 0.3.1
 
 NEW FEATURES
 
 * Compressed outputs.
 * Tests for proper handling of transitive merging. Overlaps that merge `A -> B` 
-    and `B -> C`, but not `A -> C`, will output `A -> C` and `B -> C`. That is, 
-    transitivity is applied and the final output will always use the distal most
-    transcript in a chain as the final output.
+  and `B -> C`, but not `A -> C`, will output `A -> C` and `B -> C`. That is, 
+  transitivity is applied and the final output will always use the distal most
+  transcript in a chain as the final output.
 
 SIGNIFICANT USER-VISIBLE CHANGES
 
 * All `export*()` methods now include automatic detection of `.gz` filenames, 
-    which toggles the use of compressed (`gzip`) exports.
+  which toggles the use of compressed (`gzip`) exports.
 
 BUG FIXES
 
@@ -26,9 +40,9 @@ NEW FEATURES
 SIGNIFICANT USER-VISIBLE CHANGES
 
 * Adds `generateMergeTable()` and `exportMergeTable()` for creating a merge 
-    table for transcripts that are not separated by a thresholded distance. 
-    Such files can be used by transcript quantification tools to specify what
-    transcripts should be merged.
+  table for transcripts that are not separated by a thresholded distance. 
+  Such files can be used by transcript quantification tools to specify what
+  transcripts should be merged.
 
 BUG FIXES
 
