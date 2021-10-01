@@ -1,3 +1,17 @@
+# txcutr 0.99.0
+
+NEW FEATURES
+
+* Staged for Bioconductor submission.
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+* None.
+
+BUG FIXES
+
+* None.
+
 # txcutr 0.3.2
 
 NEW FEATURES

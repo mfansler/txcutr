@@ -7,7 +7,7 @@ Description: Various mRNA sequencing library preparation methods generate
     pseudo-alignment stage, as well as in downstream analysis. This package 
     implements some convenience methods for readily generating such truncated 
     annotations and their corresponding sequences.
-Version: 0.3.2
+Version: 0.99.0
 Date: 2021-10-01
 Authors@R: 
     person(given = "Mervin",

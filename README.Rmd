@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![R build status](https://github.com/mfansler/txcutr/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/mfansler/txcutr/actions)
 [![codecov](https://codecov.io/gh/mfansler/txcutr/branch/main/graph/badge.svg?token=CGGZP68G67)](https://codecov.io/gh/mfansler/txcutr)
-[![Anaconda-Server Badge](https://anaconda.org/merv/r-txcutr/badges/installer/conda.svg)](https://conda.anaconda.org/merv)
+[![Anaconda-Server Badge](https://anaconda.org/merv/r-txcutr/badges/installer/conda.svg)](https://conda.anaconda.org/merv/r-txcutr)
 [![Anaconda-Server Badge](https://anaconda.org/merv/r-txcutr/badges/version.svg)](https://anaconda.org/merv/r-txcutr)
 <!-- badges: end -->
 
@@ -32,9 +32,6 @@ readily generating such truncated annotations and their corresponding sequences.
 
 ## Installation instructions
 
-**Interim Note:** This package is intended for release on Bioconductor, but is 
-currently only available through GitHub or Anaconda Cloud. 
-
 ### Bioconductor
 Get the latest stable `R` release from [CRAN](http://cran.r-project.org/). Then install `txcutr` using from [Bioconductor](http://bioconductor.org/) the following code:
 
@@ -43,8 +40,7 @@ if (!requireNamespace("BiocManager", quietly = TRUE)) {
     install.packages("BiocManager")
 }
 
-## not currently available
-#BiocManager::install("txcutr")
+BiocManager::install("txcutr")
 ```
 
 And the development version from [GitHub](https://github.com/mfansler/txcutr) with:
@@ -96,9 +92,10 @@ txdb_w500 <- truncateTxome(txdb, maxTxLength=500)
 ## export annotation
 exportGTF(txdb_w500, file="gencode.v38.txcutr_w500.gtf.gz")
 
-## export FASTA and merge-table
-exportFASTA(txdb_w500, genome=BSgenome.Hsapiens.UCSC.hg38, 
-            file="gencode.v38.txcutr_w500.fa.gz")
+## export FASTA
+exportFASTA(txdb_w500, genome=hg38, file="gencode.v38.txcutr_w500.fa.gz")
+
+## export merge-table
 exportMergeTable(txdb_w500, minDistance=200,
                  file="gencode.v38.txcutr_w500.merge.tsv.gz")
 ```

@@ -9,7 +9,7 @@
 status](https://github.com/mfansler/txcutr/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/mfansler/txcutr/actions)
 [![codecov](https://codecov.io/gh/mfansler/txcutr/branch/main/graph/badge.svg?token=CGGZP68G67)](https://codecov.io/gh/mfansler/txcutr)
 [![Anaconda-Server
-Badge](https://anaconda.org/merv/r-txcutr/badges/installer/conda.svg)](https://conda.anaconda.org/merv)
+Badge](https://anaconda.org/merv/r-txcutr/badges/installer/conda.svg)](https://conda.anaconda.org/merv/r-txcutr)
 [![Anaconda-Server
 Badge](https://anaconda.org/merv/r-txcutr/badges/version.svg)](https://anaconda.org/merv/r-txcutr)
 <!-- badges: end -->
@@ -25,9 +25,6 @@ and their corresponding sequences.
 
 ## Installation instructions
 
-**Interim Note:** This package is intended for release on Bioconductor,
-but is currently only available through GitHub or Anaconda Cloud.
-
 ### Bioconductor
 
 Get the latest stable `R` release from
@@ -39,8 +36,7 @@ if (!requireNamespace("BiocManager", quietly = TRUE)) {
     install.packages("BiocManager")
 }
 
-## not currently available
-#BiocManager::install("txcutr")
+BiocManager::install("txcutr")
 ```
 
 And the development version from
@@ -96,9 +92,10 @@ txdb_w500 <- truncateTxome(txdb, maxTxLength=500)
 ## export annotation
 exportGTF(txdb_w500, file="gencode.v38.txcutr_w500.gtf.gz")
 
-## export FASTA and merge-table
-exportFASTA(txdb_w500, genome=BSgenome.Hsapiens.UCSC.hg38, 
-            file="gencode.v38.txcutr_w500.fa.gz")
+## export FASTA
+exportFASTA(txdb_w500, genome=hg38, file="gencode.v38.txcutr_w500.fa.gz")
+
+## export merge-table
 exportMergeTable(txdb_w500, minDistance=200,
                  file="gencode.v38.txcutr_w500.merge.tsv.gz")
 ```
@@ -115,7 +112,7 @@ print(citation('txcutr'), bibtex = TRUE)
 #> To cite package 'txcutr' in publications use:
 #> 
 #>   Mervin Fansler (2021). txcutr: Transcriptome CUTteR. R package
-#>   version 0.3.1.
+#>   version 0.99.0.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
@@ -123,7 +120,7 @@ print(citation('txcutr'), bibtex = TRUE)
 #>     title = {txcutr: Transcriptome CUTteR},
 #>     author = {Mervin Fansler},
 #>     year = {2021},
-#>     note = {R package version 0.3.1},
+#>     note = {R package version 0.99.0},
 #>   }
 ```
 
