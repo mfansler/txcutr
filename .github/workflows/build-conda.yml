@@ -1,0 +1,45 @@
+name: publish_conda
+
+on:
+  push:
+    paths:
+      - 'conda-recipe/meta.yaml'
+
+jobs:
+  build-publish:
+    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.os }} (${{ matrix.r }})
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macOS-latest]
+        r: ['4.0', '4.1']
+
+    env:
+      TZ: UTC
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      ANACONDA_USER: merv
+      ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
+
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: conda
+
+      - name: install mamba
+        uses: mamba-org/provision-with-micromamba@main
+        with:
+          environment-file: conda-recipe/mamba-build.yaml
+
+      - name: build and upload package
+        shell: bash
+        run: |
+          conda mambabuild \
+            --user $ANACONDA_USER \
+            --token $ANACONDA_TOKEN \
+            --R ${{ matrix.r }} \
+            -c conda-forge -c bioconda \
+            conda-recipe/
