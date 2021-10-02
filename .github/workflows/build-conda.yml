@@ -38,6 +38,7 @@ jobs:
         if: runner.os == 'Linux' || runner.os == 'macOS'
         shell: bash -l -eo pipefail {0}
         run: |
+          micromamba activate mamba-build
           conda mambabuild \
             --user $ANACONDA_USER \
             --token $ANACONDA_TOKEN \
