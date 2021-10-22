@@ -5,3 +5,5 @@
 .DS_Store
 inst/doc
 *.Rproj
+vignettes/*.html
+vignettes/*.R

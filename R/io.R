@@ -21,10 +21,12 @@
 #' txdb_w500 <- truncateTxome(txdb)
 #'
 #' ## export uncompressed
-#' exportGTF(txdb_w500, "sacCer3.sgdGene.w500.gtf")
+#' outfile <- tempfile("sacCer3.sgdGene.w500", fileext=".gtf")
+#' exportGTF(txdb_w500, outfile)
 #'
 #' ## export compressed
-#' exportGTF(txdb_w500, "sacCer3.sgdGene.w500.gtf.gz")
+#' outfile <- tempfile("sacCer3.sgdGene.w500", fileext=".gtf.gz")
+#' exportGTF(txdb_w500, outfile)
 #'
 #' @importFrom rtracklayer export
 #' @importFrom BiocGenerics which paste
@@ -98,10 +100,12 @@ exportGTF <- function (txdb, file, source="txcutr") {
 #' txdb_w500 <- truncateTxome(txdb)
 #'
 #' ## export uncompressed
-#' exportFASTA(txdb_w500, sacCer3, "sacCer3.sgdGene.w500.fa")
+#' outfile <- tempfile("sacCer3.sgdGene.w500", fileext=".fa")
+#' exportFASTA(txdb_w500, sacCer3, outfile)
 #'
 #' ## export compressed
-#' exportFASTA(txdb_w500, sacCer3, "sacCer3.sgdGene.w500.fa.gz")
+#' outfile <- tempfile("sacCer3.sgdGene.w500", fileext=".fa.gz")
+#' exportFASTA(txdb_w500, sacCer3, outfile)
 #'
 #' @importFrom GenomicFeatures extractTranscriptSeqs
 #' @importFrom Biostrings writeXStringSet
@@ -135,10 +139,12 @@ exportFASTA <- function (txdb, genome, file, ...) {
 #' txdb_w500 <- truncateTxome(txdb)
 #'
 #' ## export plain format
-#' exportMergeTable(txdb_w500, "sacCer3.sgdGene.w500.merge.tsv")
+#' outfile <- tempfile("sacCer3.sgdGene.w500", fileext=".tsv")
+#' exportMergeTable(txdb_w500, outfile)
 #'
 #' ## export compressed format
-#' exportMergeTable(txdb_w500, "sacCer3.sgdGene.w500.merge.tsv.gz")
+#' outfile <- tempfile("sacCer3.sgdGene.w500", fileext=".tsv.gz")
+#' exportMergeTable(txdb_w500, outfile)
 #'
 #' @importFrom utils write.table
 #' @export
