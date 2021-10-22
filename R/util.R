@@ -11,7 +11,9 @@ setGeneric(".mutateEach", signature=c("grl"),
 #' @return a \code{CompressedGRangesList} with all element \code{GRanges} updated
 #' with supplied metadata columns
 #'
-#' @importFrom methods setMethod
+#' @importFrom methods setMethod slot slot<-
+#' @importFrom utils capture.output
+#' @importFrom S4Vectors elementNROWS
 setMethod(".mutateEach", "CompressedGRangesList",
           function (grl, ...) {
               ## ensure data is a valid length

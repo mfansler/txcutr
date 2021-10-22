@@ -38,9 +38,11 @@ seqlevels(txdb) <- c("chrI")
 txdb_w500 <- truncateTxome(txdb)
 
 ## export uncompressed
-exportFASTA(txdb_w500, sacCer3, "sacCer3.sgdGene.w500.fa")
+outfile <- tempfile("sacCer3.sgdGene.w500", fileext=".fa")
+exportFASTA(txdb_w500, sacCer3, outfile)
 
 ## export compressed
-exportFASTA(txdb_w500, sacCer3, "sacCer3.sgdGene.w500.fa.gz")
+outfile <- tempfile("sacCer3.sgdGene.w500", fileext=".fa.gz")
+exportFASTA(txdb_w500, sacCer3, outfile)
 
 }
