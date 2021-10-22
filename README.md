@@ -112,7 +112,7 @@ print(citation('txcutr'), bibtex = TRUE)
 #> To cite package 'txcutr' in publications use:
 #> 
 #>   Mervin Fansler (2021). txcutr: Transcriptome CUTteR. R package
-#>   version 0.99.0.
+#>   version 0.99.1.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
@@ -120,7 +120,7 @@ print(citation('txcutr'), bibtex = TRUE)
 #>     title = {txcutr: Transcriptome CUTteR},
 #>     author = {Mervin Fansler},
 #>     year = {2021},
-#>     note = {R package version 0.99.0},
+#>     note = {R package version 0.99.1},
 #>   }
 ```
 
