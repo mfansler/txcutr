@@ -2,5 +2,5 @@ name: mamba-build
 channels:
   - conda-forge
 dependencies:
-  - boa=0.6
+  - boa=0.7
   - anaconda-client
