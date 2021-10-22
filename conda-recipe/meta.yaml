@@ -34,6 +34,8 @@ requirements:
     - bioconductor-iranges
     - bioconductor-rtracklayer
     - bioconductor-s4vectors
+    # temporary fix for rtracklayer
+    - openssl =1.1
 
   run:
     - r-base
@@ -46,6 +48,8 @@ requirements:
     - bioconductor-iranges
     - bioconductor-s4vectors
     - bioconductor-rtracklayer
+    # temporary fix for rtracklayer
+    - openssl =1.1
 
 test:
   commands:
