@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macOS-latest]
-        r: ['4.0', '4.1']
+        r: ['4.1']
 
     env:
       TZ: UTC
