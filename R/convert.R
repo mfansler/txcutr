@@ -27,6 +27,7 @@ txdbToGRangesList <- function (txdb,
                                transcriptCols=c("gene_id", "tx_name"),
                                exonCols=c("gene_id", "tx_name",
                                           "exon_id", "exon_rank")) {
+    stopifnot(inherits(txdb, "TxDb"))
 
     grExons <- exons(txdb, columns=exonCols)
     mcols(grExons)["type"] <- "exon"

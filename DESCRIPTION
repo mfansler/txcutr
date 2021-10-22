@@ -7,7 +7,7 @@ Description: Various mRNA sequencing library preparation methods generate
     pseudo-alignment stage, as well as in downstream analysis. This package 
     implements some convenience methods for readily generating such truncated 
     annotations and their corresponding sequences.
-Version: 0.99.0
+Version: 0.99.1
 Date: 2021-10-01
 Authors@R: 
     person(given = "Mervin",
@@ -17,6 +17,8 @@ Authors@R:
            comment = c(ORCID = "0000-0002-4108-4218"))
 License: GPL-3
 Encoding: UTF-8
+Depends:
+    R (>= 4.1.0)
 Imports:
     AnnotationDbi,
     GenomicFeatures,
@@ -33,9 +35,11 @@ Imports:
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 biocViews: 
+    Alignment,
     Annotation,
-    Transcriptomics,
-    RNASeq
+    RNASeq,
+    Sequencing,
+    Transcriptomics
 Suggests: 
     RefManageR,
     BiocStyle,

@@ -128,7 +128,8 @@ Observe how the all transcripts that were previously longer than 500 nts are now
 We can now export this new transcriptome as a GTF file that could be used in an alignment pipeline or genome viewer. Note that ending the file name with **.gz** will automatically signal to that the file should be exported with **gzip** compression.
 
 ```{r "export_gtf", eval=FALSE}
-exportGTF(txdb_w500, file="sacCer3_chrI.sgd.txcutr_w500.gtf.gz")
+gtf_file <- tempfile("sacCer3_chrI.sgd.txcutr_w500", fileext=".gtf.gz")
+exportGTF(txdb_w500, file=gtf_file)
 ```
 
 ### Exporting Sequences
@@ -138,7 +139,8 @@ If we need to prepare an index for alignment or pseudo-alignment, this requires 
 library(BSgenome.Scerevisiae.UCSC.sacCer3)
 sacCer3 <- BSgenome.Scerevisiae.UCSC.sacCer3
 
-exportFASTA(txdb_w500, genome=sacCer3, file="sacCer3_chrI.sgd.txcutr_w500.fa.gz")
+fasta_file <- tempfile("sacCer3_chrI.sgd.txcutr_w500", fileext=".fa.gz")
+exportFASTA(txdb_w500, genome=sacCer3, file=fasta_file)
 ```
 
 ### Merge Table

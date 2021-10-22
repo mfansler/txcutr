@@ -34,9 +34,11 @@ seqlevels(txdb) <- c("chrI")
 txdb_w500 <- truncateTxome(txdb)
 
 ## export plain format
-exportMergeTable(txdb_w500, "sacCer3.sgdGene.w500.merge.tsv")
+outfile <- tempfile("sacCer3.sgdGene.w500", fileext=".tsv")
+exportMergeTable(txdb_w500, outfile)
 
 ## export compressed format
-exportMergeTable(txdb_w500, "sacCer3.sgdGene.w500.merge.tsv.gz")
+outfile <- tempfile("sacCer3.sgdGene.w500", fileext=".tsv.gz")
+exportMergeTable(txdb_w500, outfile)
 
 }
