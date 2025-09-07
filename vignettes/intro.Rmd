@@ -174,7 +174,7 @@ Note that one can also directly export the merge table using the `exportMergeTab
 ## Notes on Usage
 
 ### Making TxDb Objects
-The `r Biocpkg("GenomicFeatures")` package provides a number of means to create custom `TxDb` objects that can then be used by `txcutr`. Alternative workflows might include starting from a GTF/GFF3 transcriptome annotation and using the `GenomicRanges::makeTxDbFromGFF` method, or using the `GenomicRanges::makeTxDbFromBiomart` method to create the object from Biomart resources.
+The `r Biocpkg("txdbmaker")` package provides a number of means to create custom `TxDb` objects that can then be used by `txcutr`. Alternative workflows might include starting from a GTF/GFF3 transcriptome annotation and using the `txdbmaker::makeTxDbFromGFF` method, or using the `txdbmaker::makeTxDbFromBiomart` method to create the object from Biomart resources.
 
 ### BiocParallel
 The truncation step can be computationally intensive, especially for species whose annotations include many alternative transcript isoforms, such as mouse or human. The `truncateTxome` method makes use of `BiocParallel::bplapply` when applicable, and will respect the `BiocParallel::register()` setting, unless an explicit `BPPARAM` argument is supplied. 

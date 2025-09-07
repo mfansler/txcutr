@@ -1,3 +1,60 @@
+# txcutr 1.15.2
+
+NEW FEATURES
+
+* None.
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+* Removed deprecation notice.
+* Updated author email.
+
+BUG FIXES
+
+* Added `GenomeInfoDbData` to Suggests ([Issue #23](https://github.com/mfansler/txcutr/issues/23)).
+
+# txcutr 1.10.0
+
+NEW FEATURES
+
+* None.
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+* Updated author email.
+
+BUG FIXES
+
+* None.
+
+# txcutr 1.9.1
+
+NEW FEATURES
+
+* None.
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+* Switched `TxDb` creation from `GenomicFeatures` to `txdbmaker`.
+
+BUG FIXES
+
+* Compatibility with Bioconductor 3.19 (devel).
+
+# txcutr 1.0.0
+
+NEW FEATURES
+
+* None.
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+* Bioconductor 3.14 release
+
+BUG FIXES
+
+* None.
+
 # txcutr 0.99.0
 
 NEW FEATURES

@@ -39,7 +39,8 @@ setGeneric("truncateTxome", signature=c("txdb", "maxTxLength"),
 #' txdb_w100
 #'
 #' @importFrom GenomicRanges GRangesList mcols
-#' @importFrom GenomicFeatures exonsBy makeTxDbFromGRanges
+#' @importFrom GenomicFeatures exonsBy
+#' @importFrom txdbmaker makeTxDbFromGRanges
 #' @importFrom BiocParallel bplapply bpparam
 #' @importFrom AnnotationDbi select taxonomyId
 #' @importFrom S4Vectors queryHits subjectHits

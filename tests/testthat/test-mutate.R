@@ -1,5 +1,5 @@
 library(GenomicRanges)
-library(GenomicFeatures)
+library(txdbmaker)
 
 ############
 ## Mock Data
