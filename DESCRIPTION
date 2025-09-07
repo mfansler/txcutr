@@ -16,9 +16,11 @@ Authors@R:
            email = "mervin.fansler@bric.ku.dk",
            comment = c(ORCID = "0000-0002-4108-4218"))
 License: GPL-3
+URL: https://github.com/mfansler/txcutr
+BugReports: https://github.com/mfansler/txcutr/issues
 Encoding: UTF-8
 Depends:
-    R (>= 4.1.0)
+    R (>= 4.5.0)
 Imports:
     AnnotationDbi,
     GenomicFeatures,

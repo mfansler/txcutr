@@ -9,9 +9,7 @@
 status](https://github.com/mfansler/txcutr/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/mfansler/txcutr/actions)
 [![codecov](https://codecov.io/gh/mfansler/txcutr/branch/bioc-check/graph/badge.svg?token=CGGZP68G67)](https://codecov.io/gh/mfansler/txcutr)
 [![Anaconda-Server
-Badge](https://anaconda.org/merv/r-txcutr/badges/installer/conda.svg)](https://conda.anaconda.org/merv/r-txcutr)
-[![Anaconda-Server
-Badge](https://anaconda.org/merv/r-txcutr/badges/version.svg)](https://anaconda.org/merv/r-txcutr)
+Badge](https://anaconda.org/bioconda/bioconductor-txcutr/badges/version.svg)](https://anaconda.org/bioconda/bioconductor-txcutr)
 <!-- badges: end -->
 
 ## Overview
@@ -39,28 +37,23 @@ if (!requireNamespace("BiocManager", quietly = TRUE)) {
 BiocManager::install("txcutr")
 ```
 
-And the development version from
-[GitHub](https://github.com/mfansler/txcutr) with:
+or the development version with:
 
 ``` r
-BiocManager::install("mfansler/txcutr")
+# The following initializes usage of Bioc devel
+BiocManager::install(version='devel')
+
+BiocManager::install("txcutr")
 ```
 
-### Conda/Mamba
+### Conda
 
-Users managing R environments with Conda/Mamba can install the package
-with:
+Users managing R environments with Conda can install the package with:
 
 **Conda**
 
 ``` bash
-conda install -c conda-forge -c bioconda merv::r-txcutr
-```
-
-**Mamba**
-
-``` bash
-mamba install -c conda-forge -c bioconda merv::r-txcutr
+conda install -c conda-forge -c bioconda bioconductor-txcutr
 ```
 
 We strongly encourage users to create dedicated R environments. **Do not
@@ -70,10 +63,10 @@ install this in your *base* environment!**
 
 A typical workflow for `txcutr` involves
 
--   loading an existing annotation as `TxDb` object
--   truncating the annotation
--   exporting the truncated annotation (GTF)
--   exporting supporting files (FASTA, merge TSV)
+- loading an existing annotation as `TxDb` object
+- truncating the annotation
+- exporting the truncated annotation (GTF)
+- exporting supporting files (FASTA, merge TSV)
 
 ``` r
 library(rtracklayer)
@@ -108,19 +101,19 @@ Please run this yourself to check for any updates on how to cite
 
 ``` r
 print(citation('txcutr'), bibtex = TRUE)
-#> 
 #> To cite package 'txcutr' in publications use:
 #> 
-#>   Mervin Fansler (2021). txcutr: Transcriptome CUTteR. R package
-#>   version 0.99.1.
+#>   Fansler M (2025). _txcutr: Transcriptome CUTteR_. R package version
+#>   1.15.2, <https://github.com/mfansler/txcutr>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
 #>   @Manual{,
 #>     title = {txcutr: Transcriptome CUTteR},
 #>     author = {Mervin Fansler},
-#>     year = {2021},
-#>     note = {R package version 0.99.1},
+#>     year = {2025},
+#>     note = {R package version 1.15.2},
+#>     url = {https://github.com/mfansler/txcutr},
 #>   }
 ```
 
@@ -136,27 +129,27 @@ contributing to this project, you agree to abide by its terms.
 
 ## Development tools
 
--   Continuous code testing is possible thanks to [GitHub
-    actions](https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/)
-    through *[usethis](https://CRAN.R-project.org/package=usethis)*,
-    *[remotes](https://CRAN.R-project.org/package=remotes)*, and
-    *[rcmdcheck](https://CRAN.R-project.org/package=rcmdcheck)*
-    customized to use [Bioconductor’s docker
-    containers](https://www.bioconductor.org/help/docker/) and
-    *[BiocCheck](https://bioconductor.org/packages/3.13/BiocCheck)*.
--   Code coverage assessment is possible thanks to
-    [codecov](https://codecov.io/gh) and
-    *[covr](https://CRAN.R-project.org/package=covr)*.
--   The [documentation website](http://mfansler.github.io/txcutr) is
-    automatically updated thanks to
-    *[pkgdown](https://CRAN.R-project.org/package=pkgdown)*.
--   The code is styled automatically thanks to
-    *[styler](https://CRAN.R-project.org/package=styler)*.
--   The documentation is formatted thanks to
-    *[devtools](https://CRAN.R-project.org/package=devtools)* and
-    *[roxygen2](https://CRAN.R-project.org/package=roxygen2)*.
+- Continuous code testing is possible thanks to [GitHub
+  actions](https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/)
+  through *[usethis](https://CRAN.R-project.org/package=usethis)*,
+  *[remotes](https://CRAN.R-project.org/package=remotes)*, and
+  *[rcmdcheck](https://CRAN.R-project.org/package=rcmdcheck)* customized
+  to use [Bioconductor’s docker
+  containers](https://www.bioconductor.org/help/docker/) and
+  *[BiocCheck](https://bioconductor.org/packages/3.20/BiocCheck)*.
+- Code coverage assessment is possible thanks to
+  [codecov](https://codecov.io/gh) and
+  *[covr](https://CRAN.R-project.org/package=covr)*.
+- The [documentation website](http://mfansler.github.io/txcutr) is
+  automatically updated thanks to
+  *[pkgdown](https://CRAN.R-project.org/package=pkgdown)*.
+- The code is styled automatically thanks to
+  *[styler](https://CRAN.R-project.org/package=styler)*.
+- The documentation is formatted thanks to
+  *[devtools](https://CRAN.R-project.org/package=devtools)* and
+  *[roxygen2](https://CRAN.R-project.org/package=roxygen2)*.
 
 For more details, check the `dev` directory.
 
 This package was developed using
-*[biocthis](https://bioconductor.org/packages/3.13/biocthis)*.
+*[biocthis](https://bioconductor.org/packages/3.20/biocthis)*.

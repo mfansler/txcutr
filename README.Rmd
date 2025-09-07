@@ -18,8 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![R build status](https://github.com/mfansler/txcutr/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/mfansler/txcutr/actions)
 [![codecov](https://codecov.io/gh/mfansler/txcutr/branch/bioc-check/graph/badge.svg?token=CGGZP68G67)](https://codecov.io/gh/mfansler/txcutr)
-[![Anaconda-Server Badge](https://anaconda.org/merv/r-txcutr/badges/installer/conda.svg)](https://conda.anaconda.org/merv/r-txcutr)
-[![Anaconda-Server Badge](https://anaconda.org/merv/r-txcutr/badges/version.svg)](https://anaconda.org/merv/r-txcutr)
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/bioconductor-txcutr/badges/version.svg)](https://anaconda.org/bioconda/bioconductor-txcutr)
 <!-- badges: end -->
 
 ## Overview
@@ -43,24 +42,22 @@ if (!requireNamespace("BiocManager", quietly = TRUE)) {
 BiocManager::install("txcutr")
 ```
 
-And the development version from [GitHub](https://github.com/mfansler/txcutr) with:
+or the development version with:
 
 ```{r 'install_dev', eval = FALSE}
-BiocManager::install("mfansler/txcutr")
+# The following initializes usage of Bioc devel
+BiocManager::install(version='devel')
+
+BiocManager::install("txcutr")
 ```
 
-### Conda/Mamba
+### Conda
 
-Users managing R environments with Conda/Mamba can install the package with:
+Users managing R environments with Conda can install the package with:
 
 **Conda**
 ```bash
-conda install -c conda-forge -c bioconda merv::r-txcutr
-```
-
-**Mamba**
-```bash
-mamba install -c conda-forge -c bioconda merv::r-txcutr
+conda install -c conda-forge -c bioconda bioconductor-txcutr
 ```
 
 We strongly encourage users to create dedicated R environments. **Do not 
