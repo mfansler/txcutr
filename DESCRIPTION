@@ -7,13 +7,13 @@ Description: Various mRNA sequencing library preparation methods generate
     pseudo-alignment stage, as well as in downstream analysis. This package 
     implements some convenience methods for readily generating such truncated 
     annotations and their corresponding sequences.
-Version: 1.15.1
-Date: 2024-04-18
+Version: 1.15.2
+Date: 2025-09-07
 Authors@R: 
     person(given = "Mervin",
            family = "Fansler",
            role = c("aut", "cre"),
-           email = "fanslerm@mskcc.org",
+           email = "mervin.fansler@bric.ku.dk",
            comment = c(ORCID = "0000-0002-4108-4218"))
 License: GPL-3
 Encoding: UTF-8
@@ -49,7 +49,7 @@ Suggests:
     rmarkdown,
     testthat (>= 3.0.0),
     TxDb.Scerevisiae.UCSC.sacCer3.sgdGene,
-    BSgenome.Scerevisiae.UCSC.sacCer3
+    BSgenome.Scerevisiae.UCSC.sacCer3,
+    GenomeInfoDbData
 VignetteBuilder: knitr
 Config/testthat/edition: 3
-PackageStatus: Deprecated
