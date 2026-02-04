@@ -5,14 +5,16 @@
 \alias{truncateTxome,TxDb-method}
 \title{Truncate Transcriptome}
 \usage{
-truncateTxome(txdb, maxTxLength = 500, ...)
+truncateTxome(txdb, maxTxLength = 500, txEnd = "3prime", ...)
 
-\S4method{truncateTxome}{TxDb}(txdb, maxTxLength = 500, BPPARAM = bpparam())
+\S4method{truncateTxome}{TxDb}(txdb, maxTxLength = 500, txEnd = "3prime", BPPARAM = bpparam())
 }
 \arguments{
 \item{txdb}{a \code{TxDb} object}
 
 \item{maxTxLength}{the maximum length of transcripts}
+
+\item{txEnd}{transcript truncation end}
 
 \item{...}{additional arguments}
 
@@ -43,5 +45,9 @@ txdb_w500
 ## last 100 nts per tx
 txdb_w100 <- truncateTxome(txdb, maxTxLength=100)
 txdb_w100
+
+## first 500 nts per tx (5' truncation)
+txdb_5p_w500 <- truncateTxome(txdb, txEnd = "5prime")
+txdb_5p_w500
 
 }

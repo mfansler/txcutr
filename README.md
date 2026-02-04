@@ -1,7 +1,13 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# txcutr
+# txendcutr
+
+> **Note:** This is a fork of
+> [txcutr](https://github.com/mfansler/txcutr) currently under
+> development. It extends the original package to support both 5’ and 3’
+> transcript end truncation, along with performance optimizations. See
+> branches `5prime_extension` and `optimizations` for specific changes.
 
 <!-- badges: start -->
 
@@ -17,13 +23,45 @@ Badge](https://anaconda.org/bioconda/bioconductor-txcutr/badges/version.svg)](ht
 Various mRNA sequencing library preparation methods generate sequencing
 reads from the transcript ends. Quantification of isoform usage can be
 improved by using truncated versions of transcriptome annotations when
-assigning such reads to isoforms. The `txcutr` package implements some
-convenience methods for readily generating such truncated annotations
-and their corresponding sequences.
+assigning such reads to isoforms. The `txendcutr` package implements
+some convenience methods for readily generating such truncated
+annotations and their corresponding sequences.
+
+**This fork extends the original txcutr functionality to include:**
+
+- 5’ end truncation (in addition to the original 3’ truncation)
+- Export of overlapped exons post-truncation
+- Performance optimizations
+
+## Development Status
+
+This is an active fork with the following branches:
+
+- `5prime_extension` - Adds 5’ truncation support and overlapped exon
+  export
+- `optimizations` - Performance improvements built on the above features
 
 ## Installation instructions
 
-### Bioconductor
+### From GitHub (Development Fork)
+
+You can install it directly from GitHub using:
+
+``` r
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+    install.packages("BiocManager")
+}
+
+BiocManager::install("guillermo1996/txendcutr@5prime_extension")
+```
+
+To install the optimized version:
+
+``` r
+BiocManager::install("guillermo1996/txendcutr@optimizations")
+```
+
+### Bioconductor (Not supported for `txendcutr`)
 
 Get the latest stable `R` release from
 [CRAN](http://cran.r-project.org/). Then install `txcutr` using from
@@ -46,7 +84,7 @@ BiocManager::install(version='devel')
 BiocManager::install("txcutr")
 ```
 
-### Conda
+### Conda (Not supported for `txendcutr`)
 
 Users managing R environments with Conda can install the package with:
 
@@ -95,6 +133,9 @@ exportMergeTable(txdb_w500, minDistance=200,
 
 ## Citation
 
+This package is a fork of txcutr by Mervin Fansler. Please cite the
+original work.
+
 Below is the citation output from using `citation('txcutr')` in R.
 Please run this yourself to check for any updates on how to cite
 **txcutr**.
@@ -103,8 +144,10 @@ Please run this yourself to check for any updates on how to cite
 print(citation('txcutr'), bibtex = TRUE)
 #> To cite package 'txcutr' in publications use:
 #> 
-#>   Fansler M (2025). _txcutr: Transcriptome CUTteR_. R package version
-#>   1.15.2, <https://github.com/mfansler/txcutr>.
+#>   Fansler M (2025). _txcutr: Transcriptome CUTteR_.
+#>   doi:10.18129/B9.bioc.txcutr
+#>   <https://doi.org/10.18129/B9.bioc.txcutr>, R package version 1.16.0,
+#>   <https://bioconductor.org/packages/txcutr>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
@@ -112,8 +155,9 @@ print(citation('txcutr'), bibtex = TRUE)
 #>     title = {txcutr: Transcriptome CUTteR},
 #>     author = {Mervin Fansler},
 #>     year = {2025},
-#>     note = {R package version 1.15.2},
-#>     url = {https://github.com/mfansler/txcutr},
+#>     note = {R package version 1.16.0},
+#>     url = {https://bioconductor.org/packages/txcutr},
+#>     doi = {10.18129/B9.bioc.txcutr},
 #>   }
 ```
 
@@ -136,7 +180,7 @@ contributing to this project, you agree to abide by its terms.
   *[rcmdcheck](https://CRAN.R-project.org/package=rcmdcheck)* customized
   to use [Bioconductor’s docker
   containers](https://www.bioconductor.org/help/docker/) and
-  *[BiocCheck](https://bioconductor.org/packages/3.20/BiocCheck)*.
+  *[BiocCheck](https://bioconductor.org/packages/3.22/BiocCheck)*.
 - Code coverage assessment is possible thanks to
   [codecov](https://codecov.io/gh) and
   *[covr](https://CRAN.R-project.org/package=covr)*.
@@ -152,4 +196,4 @@ contributing to this project, you agree to abide by its terms.
 For more details, check the `dev` directory.
 
 This package was developed using
-*[biocthis](https://bioconductor.org/packages/3.20/biocthis)*.
+*[biocthis](https://bioconductor.org/packages/3.22/biocthis)*.

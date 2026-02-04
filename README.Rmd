@@ -13,7 +13,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-# txcutr
+# txendcutr
+
+> **Note:** This is a fork of [txcutr](https://github.com/mfansler/txcutr) currently under development. 
+> It extends the original package to support both 5' and 3' transcript end truncation, along with performance optimizations.
+> See branches `5prime_extension` and `optimizations` for specific changes.
 
 <!-- badges: start -->
 [![R build status](https://github.com/mfansler/txcutr/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/mfansler/txcutr/actions)
@@ -26,12 +30,44 @@ knitr::opts_chunk$set(
 Various mRNA sequencing library preparation methods generate sequencing reads 
 from the transcript ends. Quantification of isoform usage can be improved by 
 using truncated versions of transcriptome annotations when assigning such reads 
-to isoforms. The `txcutr` package implements some convenience methods for 
+to isoforms. The `txendcutr` package implements some convenience methods for 
 readily generating such truncated annotations and their corresponding sequences.
+
+
+**This fork extends the original txcutr functionality to include:**
+
+ - 5' end truncation (in addition to the original 3' truncation)
+ - Export of overlapped exons post-truncation
+ - Performance optimizations
+
+## Development Status
+
+This is an active fork with the following branches:
+
+ - `5prime_extension` - Adds 5' truncation support and overlapped exon export
+ - `optimizations` - Performance improvements built on the above features
 
 ## Installation instructions
 
-### Bioconductor
+### From GitHub (Development Fork)
+
+You can install it directly from GitHub using:
+
+```{r 'install-github', eval = FALSE}
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+    install.packages("BiocManager")
+}
+
+BiocManager::install("guillermo1996/txendcutr@5prime_extension")
+```
+
+To install the optimized version:
+
+```{r 'install-github2', eval = FALSE}
+BiocManager::install("guillermo1996/txendcutr@optimizations")
+```
+
+### Bioconductor (Not supported for `txendcutr`)
 Get the latest stable `R` release from [CRAN](http://cran.r-project.org/). Then install `txcutr` using from [Bioconductor](http://bioconductor.org/) the following code:
 
 ```{r 'install', eval = FALSE}
@@ -51,7 +87,7 @@ BiocManager::install(version='devel')
 BiocManager::install("txcutr")
 ```
 
-### Conda
+### Conda (Not supported for `txendcutr`)
 
 Users managing R environments with Conda can install the package with:
 
@@ -98,6 +134,8 @@ exportMergeTable(txdb_w500, minDistance=200,
 ```
 
 ## Citation
+
+This package is a fork of txcutr by Mervin Fansler. Please cite the original work.
 
 Below is the citation output from using `citation('txcutr')` in R. Please
 run this yourself to check for any updates on how to cite __txcutr__.

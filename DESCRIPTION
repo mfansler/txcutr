@@ -1,23 +1,30 @@
-Package: txcutr
-Title: Transcriptome CUTteR
+Package: txendcutr
+Title: Transcriptome End-specific CUTteR
 Description: Various mRNA sequencing library preparation methods generate 
     sequencing reads specifically from the transcript ends. Analyses that focus 
     on quantification of isoform usage from such data can be aided by using 
     truncated versions of transcriptome annotations, both at the alignment or 
     pseudo-alignment stage, as well as in downstream analysis. This package 
     implements some convenience methods for readily generating such truncated 
-    annotations and their corresponding sequences.
-Version: 1.15.2
-Date: 2025-09-07
-Authors@R: 
+    annotations from both 5' and 3' transcript ends and their corresponding 
+    sequences. This is a fork of txcutr with extended functionality and 
+    performance optimizations.
+Version: 1.16.0
+Date: 2026-02-04
+Authors@R: c(
     person(given = "Mervin",
            family = "Fansler",
            role = c("aut", "cre"),
            email = "mervin.fansler@bric.ku.dk",
-           comment = c(ORCID = "0000-0002-4108-4218"))
+           comment = c(ORCID = "0000-0002-4108-4218")),
+    person(given = "Guillermo",
+           family = "Rocamora Pérez",
+           role = c("ctb"),
+           email = "guillermorocamora@gmail.com",
+           comment = c(ORCID = "0000-0002-4795-3648")))
 License: GPL-3
-URL: https://github.com/mfansler/txcutr
-BugReports: https://github.com/mfansler/txcutr/issues
+URL: https://github.com/guillermo1996/txendcutr
+BugReports: https://github.com/guillermo1996/txendcutr/issues
 Encoding: UTF-8
 Depends:
     R (>= 4.5.0)
@@ -36,7 +43,7 @@ Imports:
     methods,
     utils
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.3
 biocViews: 
     Alignment,
     Annotation,
