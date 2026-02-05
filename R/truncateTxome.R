@@ -100,12 +100,6 @@ setMethod("truncateTxome", "TxDb", function(txdb,
     drop.self = TRUE, drop.redundant = TRUE
   )
 
-  overlap_df <- data.frame(
-    queryTx = names(clipped)[queryHits(overlaps)],
-    subjectTx = names(clipped)[subjectHits(overlaps)],
-    stringsAsFactors = FALSE
-  )
-
   ## ensure genes match
   if (length(overlaps) > 0) {
     idx_genes_match <- mapply(function(idx1, idx2) {
