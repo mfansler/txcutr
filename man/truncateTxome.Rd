@@ -5,9 +5,21 @@
 \alias{truncateTxome,TxDb-method}
 \title{Truncate Transcriptome}
 \usage{
-truncateTxome(txdb, maxTxLength = 500, txEnd = "3prime", ...)
+truncateTxome(
+  txdb,
+  maxTxLength = 500,
+  txEnd = "3prime",
+  overlapFile = NULL,
+  ...
+)
 
-\S4method{truncateTxome}{TxDb}(txdb, maxTxLength = 500, txEnd = "3prime", BPPARAM = bpparam())
+\S4method{truncateTxome}{TxDb}(
+  txdb,
+  maxTxLength = 500,
+  txEnd = "3prime",
+  BPPARAM = bpparam(),
+  overlapFile = NULL
+)
 }
 \arguments{
 \item{txdb}{a \code{TxDb} object}
@@ -15,6 +27,10 @@ truncateTxome(txdb, maxTxLength = 500, txEnd = "3prime", ...)
 \item{maxTxLength}{the maximum length of transcripts}
 
 \item{txEnd}{transcript truncation end}
+
+\item{overlapFile}{(optional) path to export a CSV file containing transcript
+overlaps (query_transcript, subject_transcript) post-truncation. If NULL,
+no file is exported.}
 
 \item{...}{additional arguments}
 
@@ -43,7 +59,7 @@ txdb_w500 <- truncateTxome(txdb)
 txdb_w500
 
 ## last 100 nts per tx
-txdb_w100 <- truncateTxome(txdb, maxTxLength=100)
+txdb_w100 <- truncateTxome(txdb, maxTxLength = 100)
 txdb_w100
 
 ## first 500 nts per tx (5' truncation)
