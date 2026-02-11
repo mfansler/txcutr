@@ -12,6 +12,8 @@
 \item{maxTxLength}{a positive integer}
 
 \item{txEnd}{transcript truncation end}
+
+\item{BPPARAM}{A \linkS4class{BiocParallelParam} object for parallelization}
 }
 \value{
 the clipped \code{GRanges} object

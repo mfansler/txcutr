@@ -18,8 +18,8 @@ gr_contig <- GRanges(
   tx_id=c(NA, "tx_1", "tx_1", "tx_2", "tx_2"),
   exon_id=c(NA, NA, "exon_1", NA, "exon_2"))
 
-txdb_contig <- makeTxDbFromGRanges(gr_contig)
-txdb_contig_inv <- makeTxDbFromGRanges(invertStrand(gr_contig))
+txdb_contig <- .suppressTxDbGenomeWarning(makeTxDbFromGRanges(gr_contig))
+txdb_contig_inv <- .suppressTxDbGenomeWarning(makeTxDbFromGRanges(invertStrand(gr_contig)))
 
 ## Negative Strand
 gr_contig_neg <- GRanges(
@@ -34,8 +34,8 @@ gr_contig_neg <- GRanges(
   tx_id=c(NA, "tx_1", "tx_1", "tx_2", "tx_2"),
   exon_id=c(NA, NA, "exon_1", NA, "exon_2"))
 
-txdb_contig_neg <- makeTxDbFromGRanges(gr_contig_neg)
-txdb_contig_neg_inv <- makeTxDbFromGRanges(invertStrand(gr_contig_neg))
+txdb_contig_neg <- .suppressTxDbGenomeWarning(makeTxDbFromGRanges(gr_contig_neg))
+txdb_contig_neg_inv <- .suppressTxDbGenomeWarning(makeTxDbFromGRanges(invertStrand(gr_contig_neg)))
 
 
 ## Overlapping Genes
@@ -57,7 +57,7 @@ gr_multigene <- GRanges(
   exon_id=c(NA, NA, "exon_1",
             NA, NA, "exon_2"))
 
-txdb_multigene <- makeTxDbFromGRanges(gr_multigene)
+txdb_multigene <- .suppressTxDbGenomeWarning(makeTxDbFromGRanges(gr_multigene))
 
 ########
 ## Tests
@@ -67,7 +67,7 @@ test_that("identical transcripts are merged, positive strand", {
   LENGTHS_TO_TEST <- c(100, 500)
 
   for (n in LENGTHS_TO_TEST) {
-    txdb_res <- truncateTxome(txdb_contig, maxTxLength=n)
+    txdb_res <- truncate3primeTxome(txdb_contig, maxTxLength=n, quiet = T)
 
     n_txs <- length(transcripts(txdb_res))
     n_exons <- length(exons(txdb_res))
@@ -80,7 +80,7 @@ test_that("identical transcripts are merged, negative strand", {
   LENGTHS_TO_TEST <- c(100, 500)
 
   for (n in LENGTHS_TO_TEST) {
-    txdb_res <- truncateTxome(txdb_contig_neg, maxTxLength=n)
+    txdb_res <- truncate3primeTxome(txdb_contig_neg, maxTxLength=n, quiet = T)
 
     n_txs <- length(transcripts(txdb_res))
     n_exons <- length(exons(txdb_res))
@@ -93,7 +93,7 @@ test_that("non-identical transcripts are retained, positive strand", {
   LENGTHS_TO_TEST <- c(900)
 
   for (n in LENGTHS_TO_TEST) {
-    txdb_res <- truncateTxome(txdb_contig, maxTxLength=n)
+    txdb_res <- truncate3primeTxome(txdb_contig, maxTxLength=n, quiet = T)
 
     n_txs <- length(transcripts(txdb_res))
     n_exons <- length(exons(txdb_res))
@@ -106,7 +106,7 @@ test_that("non-identical transcripts are retained, negative strand", {
   LENGTHS_TO_TEST <- c(900)
 
   for (n in LENGTHS_TO_TEST) {
-    txdb_res <- truncateTxome(txdb_contig_neg, maxTxLength=n)
+    txdb_res <- truncate3primeTxome(txdb_contig_neg, maxTxLength=n, quiet = T)
 
     n_txs <- length(transcripts(txdb_res))
     n_exons <- length(exons(txdb_res))
@@ -119,7 +119,7 @@ test_that("APA transcripts are retained, positive strand", {
   LENGTHS_TO_TEST <- c(100, 500)
 
   for (n in LENGTHS_TO_TEST) {
-    txdb_res <- truncateTxome(txdb_contig_neg_inv, maxTxLength=n)
+    txdb_res <- truncate3primeTxome(txdb_contig_neg_inv, maxTxLength=n, quiet = T)
 
     n_txs <- length(transcripts(txdb_res))
     n_exons <- length(exons(txdb_res))
@@ -132,7 +132,7 @@ test_that("APA transcripts are retained, negative strand", {
   LENGTHS_TO_TEST <- c(100, 500)
 
   for (n in LENGTHS_TO_TEST) {
-    txdb_res <- truncateTxome(txdb_contig_inv, maxTxLength=n)
+    txdb_res <- truncate3primeTxome(txdb_contig_inv, maxTxLength=n, quiet = T)
 
     n_txs <- length(transcripts(txdb_res))
     n_exons <- length(exons(txdb_res))
@@ -145,7 +145,7 @@ test_that("identical txs from different genes are retained, positive strand", {
   LENGTHS_TO_TEST <- c(500)
 
   for (n in LENGTHS_TO_TEST) {
-    txdb_res <- truncateTxome(txdb_multigene, maxTxLength=n)
+    txdb_res <- truncate3primeTxome(txdb_multigene, maxTxLength=n, quiet = T)
 
     n_genes <- length(transcripts(txdb_res))
     n_txs <- length(transcripts(txdb_res))

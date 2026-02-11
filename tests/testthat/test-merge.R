@@ -18,7 +18,7 @@ gr_contig <- GRanges(
   tx_id=c(NA, "tx_1", "tx_1", "tx_2", "tx_2"),
   exon_id=c(NA, NA, "exon_1", NA, "exon_2"))
 
-txdb_contig <- makeTxDbFromGRanges(gr_contig)
+txdb_contig <- .suppressTxDbGenomeWarning(makeTxDbFromGRanges(gr_contig))
 
 ## Negative Strand
 gr_contig_neg <- GRanges(
@@ -33,7 +33,7 @@ gr_contig_neg <- GRanges(
   tx_id=c(NA, "tx_1", "tx_1", "tx_2", "tx_2"),
   exon_id=c(NA, NA, "exon_1", NA, "exon_2"))
 
-txdb_contig_neg <- makeTxDbFromGRanges(gr_contig_neg)
+txdb_contig_neg <- .suppressTxDbGenomeWarning(makeTxDbFromGRanges(gr_contig_neg))
 
 ## Transitive Positive
 gr_transitive <- GRanges(
@@ -57,8 +57,8 @@ gr_transitive <- GRanges(
   tx_id=c(NA, "tx_1", "tx_1", "tx_2", "tx_2", "tx_3", "tx_3"),
   exon_id=c(NA, NA, "exon_1", NA, "exon_2", NA, "exon_3"))
 
-txdb_transitive <- makeTxDbFromGRanges(gr_transitive)
-txdb_transitive_neg <- makeTxDbFromGRanges(invertStrand(gr_transitive))
+txdb_transitive <- .suppressTxDbGenomeWarning(makeTxDbFromGRanges(gr_transitive))
+txdb_transitive_neg <- .suppressTxDbGenomeWarning(makeTxDbFromGRanges(invertStrand(gr_transitive)))
 
 ########
 ## Tests

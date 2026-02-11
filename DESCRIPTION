@@ -9,7 +9,7 @@ Description: Various mRNA sequencing library preparation methods generate
     annotations from both 5' and 3' transcript ends and their corresponding 
     sequences. This is a fork of txcutr with extended functionality and 
     performance optimizations.
-Version: 1.16.1
+Version: 1.17.0
 Date: 2026-02-04
 Authors@R: c(
     person(given = "Mervin",

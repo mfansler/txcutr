@@ -18,10 +18,10 @@ gr_multi_exon <- GRanges(
   tx_id=c(NA, "tx_1", "tx_1", "tx_1", "tx_1"),
   exon_id=c(NA, NA, "exon_1", "exon_2", "exon_3"))
 
-txdb_multi_exon <- makeTxDbFromGRanges(gr_multi_exon)
+txdb_multi_exon <- .suppressTxDbGenomeWarning(makeTxDbFromGRanges(gr_multi_exon))
 
 ## Negative Strand
-txdb_multi_exon_neg <- makeTxDbFromGRanges(invertStrand(gr_multi_exon))
+txdb_multi_exon_neg <- .suppressTxDbGenomeWarning(makeTxDbFromGRanges(invertStrand(gr_multi_exon)))
 
 ########
 ## Tests

@@ -37,3 +37,31 @@ setMethod(".mutateEach", "SimpleGRangesList",
           function (grl, ...) .mutateEach(GRangesList(grl, compress=TRUE), ...)
 )
 
+#' Suppress `txdbmaker` warning message
+#'
+#' Due to missing genome information in the input data,
+#' \code{txdbmaker::makeTxDbFromGRanges} always returns a warning message
+#' stating 'genome version information is not available for this TxDb object'.
+#' This warning does not affect functionality and can be safely suppressed. This
+#' function executes a TxDb-generating expression while suppressing only this
+#' specific warning.
+#'
+#' @param fn_call an R expression that creates a TxDb object, expected a call to
+#'   \code{makeTxDbFromGRanges} or similar function.
+#'
+#' @return a \code{txdb} object representing a transcriptome, as returned by the
+#'   expression passed to \code{fn_call}.
+.suppressTxDbGenomeWarning <- function(fn_call){
+  withCallingHandlers(
+    {
+      tmp_txdb <- fn_call
+    },
+    warning = function(w){
+      if(grepl("genome version information is not available", conditionMessage(w))){
+        invokeRestart("muffleWarning")
+      }
+    }
+  )
+  
+  return(tmp_txdb)
+}

@@ -18,7 +18,7 @@ gr_multi_exon <- GRanges(
   tx_id=c(NA, "tx_1", "tx_1", "tx_1", "tx_1"),
   exon_id=c(NA, NA, "exon_1", "exon_2", "exon_3"))
 
-txdb_multi_exon <- makeTxDbFromGRanges(gr_multi_exon)
+txdb_multi_exon <- .suppressTxDbGenomeWarning(makeTxDbFromGRanges(gr_multi_exon))
 grl_multi_exon <- exonsBy(txdb_multi_exon, use.names=TRUE)
 
 gr_multi_tx <- GRanges(
@@ -33,7 +33,7 @@ gr_multi_tx <- GRanges(
   tx_id=c(NA, "tx_1", "tx_1", "tx_2", "tx_2"),
   exon_id=c(NA, NA, "exon_1", NA, "exon_2"))
 
-txdb_multi_tx <- makeTxDbFromGRanges(gr_multi_tx)
+txdb_multi_tx <- .suppressTxDbGenomeWarning(makeTxDbFromGRanges(gr_multi_tx))
 grl_multi_tx <- exonsBy(txdb_multi_tx, use.names=TRUE)
 
 ########

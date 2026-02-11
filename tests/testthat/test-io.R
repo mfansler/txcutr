@@ -27,7 +27,7 @@ gr_transitive <- GRanges(
   tx_id=c(NA, "tx_1", "tx_1", "tx_2", "tx_2", "tx_3", "tx_3"),
   exon_id=c(NA, NA, "exon_1", NA, "exon_2", NA, "exon_3"))
 
-txdb_transitive <- makeTxDbFromGRanges(gr_transitive)
+txdb_transitive <- .suppressTxDbGenomeWarning(makeTxDbFromGRanges(gr_transitive))
 
 ########
 ## Tests
