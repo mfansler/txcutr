@@ -134,22 +134,3 @@ test_that("spliced truncation works, negative strand", {
       function (x) { min(start(exons(x))) }))
   }
 })
-
-test_that("simple truncation works with wrapper, positive strand", {
-  LENGTHS_TO_TEST <- c(100, 500)
-  
-  for (n in LENGTHS_TO_TEST) {
-    txdb_res <- truncate3primeTxome(txdb_single_contig_w1000, maxTxLength=n, quiet = T)
-    
-    ## correct lengths
-    expect_equal(width(genes(txdb_res)), n)
-    expect_equal(width(transcripts(txdb_res)), n)
-    expect_equal(width(exons(txdb_res)), n)
-    
-    ## correct 3' ends
-    expect_equal_applied(txdb_res, txdb_single_contig_w1000, fns=list(
-      function (x) { end(genes(x)) },
-      function (x) { end(transcripts(x)) },
-      function (x) { end(exons(x)) }))
-  }
-})

@@ -1,13 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# txendcutr
-
-> **Note:** This is a fork of
-> [txcutr](https://github.com/mfansler/txcutr) currently under
-> development. It extends the original package to support both 5’ and 3’
-> transcript end truncation, along with performance optimizations. See
-> branches `5prime_extension` and `optimizations` for specific changes.
+# txcutr
 
 <!-- badges: start -->
 
@@ -23,45 +17,13 @@ Badge](https://anaconda.org/bioconda/bioconductor-txcutr/badges/version.svg)](ht
 Various mRNA sequencing library preparation methods generate sequencing
 reads from the transcript ends. Quantification of isoform usage can be
 improved by using truncated versions of transcriptome annotations when
-assigning such reads to isoforms. The `txendcutr` package implements
-some convenience methods for readily generating such truncated
-annotations and their corresponding sequences.
-
-**This fork extends the original txcutr functionality to include:**
-
-- 5’ end truncation (in addition to the original 3’ truncation)
-- Export of overlapped exons post-truncation
-- Performance optimizations
-
-## Development Status
-
-This is an active fork with the following branches:
-
-- `5prime_extension` - Adds 5’ truncation support and overlapped exon
-  export
-- `optimizations` - Performance improvements built on the above features
+assigning such reads to isoforms. The `txcutr` package implements some
+convenience methods for readily generating such truncated annotations
+and their corresponding sequences.
 
 ## Installation instructions
 
-### From GitHub (Development Fork)
-
-You can install it directly from GitHub using:
-
-``` r
-if (!requireNamespace("BiocManager", quietly = TRUE)) {
-    install.packages("BiocManager")
-}
-
-BiocManager::install("guillermo1996/txendcutr@5prime_extension")
-```
-
-To install the optimized version:
-
-``` r
-BiocManager::install("guillermo1996/txendcutr@optimizations")
-```
-
-### Bioconductor (Not supported for `txendcutr`)
+### Bioconductor
 
 Get the latest stable `R` release from
 [CRAN](http://cran.r-project.org/). Then install `txcutr` using from
@@ -84,7 +46,7 @@ BiocManager::install(version='devel')
 BiocManager::install("txcutr")
 ```
 
-### Conda (Not supported for `txendcutr`)
+### Conda
 
 Users managing R environments with Conda can install the package with:
 
@@ -102,7 +64,7 @@ install this in your *base* environment!**
 A typical workflow for `txcutr` involves
 
 - loading an existing annotation as `TxDb` object
-- truncating the annotation
+- truncating the annotation from the 3’ or 5’ end
 - exporting the truncated annotation (GTF)
 - exporting supporting files (FASTA, merge TSV)
 
@@ -118,7 +80,7 @@ hg38 <- BSgenome.Hsapiens.UCSC.hg38
 txdb <- makeTxDbFromGFF("gencode.v38.annotaton.gtf.gz", organism="Homo sapiens")
 
 ## truncate to maximum of 500 nts
-txdb_w500 <- truncateTxome(txdb, maxTxLength=500)
+txdb_w500 <- truncate3primeTxome(txdb, maxTxLength=500) # use `truncate5primeTxome` for 5' truncation
 
 ## export annotation
 exportGTF(txdb_w500, file="gencode.v38.txcutr_w500.gtf.gz")
@@ -132,9 +94,6 @@ exportMergeTable(txdb_w500, minDistance=200,
 ```
 
 ## Citation
-
-This package is a fork of txcutr by Mervin Fansler. Please cite the
-original work.
 
 Below is the citation output from using `citation('txcutr')` in R.
 Please run this yourself to check for any updates on how to cite
