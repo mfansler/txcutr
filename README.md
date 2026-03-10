@@ -19,7 +19,8 @@ reads from the transcript ends. Quantification of isoform usage can be
 improved by using truncated versions of transcriptome annotations when
 assigning such reads to isoforms. The `txcutr` package implements some
 convenience methods for readily generating such truncated annotations
-and their corresponding sequences.
+from either their 5’ or 3’ transcript ends and their corresponding
+sequences.
 
 ## Installation instructions
 
