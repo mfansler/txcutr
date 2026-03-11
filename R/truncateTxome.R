@@ -51,8 +51,6 @@ setMethod("truncate5primeTxome", "TxDb", function(txdb, maxTxLength = 300, overl
   }
 })
 
-setMethod("truncateTxome", "TxDb", function(txdb){})
-                                            
 
 #' Truncate Transcriptome
 #'
@@ -63,7 +61,7 @@ setMethod("truncateTxome", "TxDb", function(txdb){})
 #' @param maxTxLength the maximum length of transcripts. Defaults to 500 bp
 #' @param txEnd transcript truncation end, either `3prime` (default) or
 #'   `5prime`.
-#' @param overlapFile optional path to export a TSV file containing transcript
+#' @param overlapFile optional path to export a CSV file containing transcript
 #'   overlaps (query_transcript, subject_transcript) post-truncation. If NULL
 #'   (default), no file is exported.
 #' @param BPPARAM A \linkS4class{BiocParallelParam} object specifying whether
@@ -250,7 +248,7 @@ setMethod("truncateTxome", "TxDb", function(txdb,
   # Generate the final TxDb object
   dfMetadata <- data.frame(
     name=c("Truncated by", "Maximum Transcript Length", "Truncation End"),
-    value=c("txendcutr", maxTxLength, txEnd)
+    value=c("txcutr", maxTxLength, txEnd)
   )
   
   .suppressTxDbGenomeWarning(
@@ -284,51 +282,51 @@ setMethod("truncateTxome", "TxDb", function(txdb,
     ## adjustment is directed
     txStrand <- strand(gr)
     virtual_txStrand <- if (txEnd == "3prime") txStrand else invertStrand(txStrand)
-
+    
     if (all(virtual_txStrand == "+")) {
       ## order txs
       idx <- order(-end(gr))
-
+      
       ## compute cumulative lengths
       cumLength <- cumsum(width(gr[idx]))
-
+      
       ## index of exon that exceeds maximum length
       idxLast <- min(which(cumLength > maxTxLength))
-
+      
       ## compute cutoff (genomic position)
       startNew <- start(gr[idx[idxLast]]) + (cumLength[idxLast] - maxTxLength)
-
+      
       ## new transcript interval
       grMask <- GRanges(seqnames(gr[1]),
-        IRanges(startNew, max(end(gr))),
-        strand = "+"
+                        IRanges(startNew, max(end(gr))),
+                        strand = "+"
       )
-
+      
       if (txEnd == "5prime") grMask <- invertStrand(grMask)
-
+      
       ## clip exons with interval
       intersect(gr, grMask)
     } else if (all(virtual_txStrand == "-")) {
       ## order txs
       idx <- order(start(gr))
-
+      
       ## compute cumulative lengths
       cumLength <- cumsum(width(gr[idx]))
-
+      
       ## index of exon that exceeds maximum length
       idxLast <- min(which(cumLength > maxTxLength))
-
+      
       ## compute cutoff (genomic position)
       endNew <- end(gr[idx[idxLast]]) - (cumLength[idxLast] - maxTxLength)
-
+      
       ## new transcript interval
       grMask <- GRanges(seqnames(gr[1]),
-        IRanges(min(start(gr)), endNew),
-        strand = "-"
+                        IRanges(min(start(gr)), endNew),
+                        strand = "-"
       )
-
+      
       if (txEnd == "5prime") grMask <- invertStrand(grMask)
-
+      
       ## clip exons with interval
       intersect(gr, grMask)
     } else {
@@ -358,7 +356,7 @@ setMethod("truncateTxome", "TxDb", function(txdb,
       nrun(strand(gr)) == 1
     )
   }
-
+  
   ## TODO: Check if faster to construct new GRanges
   ## Current implementation makes retention of seqinfo simple.
   start(gr) <- min(start(gr))

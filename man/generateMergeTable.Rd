@@ -14,6 +14,9 @@ generateMergeTable(txdb, minDistance = 200)
 
 \item{minDistance}{the minimum separation to regard overlapping transcripts
 as unique}
+
+\item{txEnd}{transcript truncation end, either \verb{3prime} (default) or
+\verb{5prime}.}
 }
 \value{
 a \code{data.frame} with three columns

@@ -70,7 +70,7 @@ truncate5primeTxome(
 \item{txEnd}{transcript truncation end, either \verb{3prime} (default) or
 \verb{5prime}.}
 
-\item{overlapFile}{optional path to export a TSV file containing transcript
+\item{overlapFile}{optional path to export a CSV file containing transcript
 overlaps (query_transcript, subject_transcript) post-truncation. If NULL
 (default), no file is exported.}
 
