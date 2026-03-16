@@ -58,6 +58,7 @@ Suggests:
     testthat (>= 3.0.0),
     TxDb.Scerevisiae.UCSC.sacCer3.sgdGene,
     BSgenome.Scerevisiae.UCSC.sacCer3,
-    GenomeInfoDbData
+    GenomeInfoDbData,
+    withr
 VignetteBuilder: knitr
 Config/testthat/edition: 3

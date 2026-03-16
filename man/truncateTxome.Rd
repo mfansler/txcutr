@@ -130,6 +130,6 @@ txdb_3p <- truncate3primeTxome(txdb, maxTxLength = 500)
 txdb_quiet <- truncate3primeTxome(txdb, quiet = TRUE)
 
 ## Export overlap information
-txdb_w500 <- truncateTxome(txdb, overlapFile = "overlaps.tsv")
+txdb_w500 <- truncateTxome(txdb, overlapFile = tempfile())
 
 }
