@@ -27,7 +27,8 @@ Various mRNA sequencing library preparation methods generate sequencing reads
 from the transcript ends. Quantification of isoform usage can be improved by 
 using truncated versions of transcriptome annotations when assigning such reads 
 to isoforms. The `txcutr` package implements some convenience methods for 
-readily generating such truncated annotations and their corresponding sequences.
+readily generating such truncated annotations from either their 5' or 3' 
+transcript ends and their corresponding sequences.
 
 ## Installation instructions
 
@@ -68,7 +69,7 @@ install this in your *base* environment!**
 A typical workflow for `txcutr` involves 
 
  - loading an existing annotation as `TxDb` object
- - truncating the annotation
+ - truncating the annotation from the 3' or 5' end
  - exporting the truncated annotation (GTF)
  - exporting supporting files (FASTA, merge TSV)
  
@@ -84,7 +85,7 @@ hg38 <- BSgenome.Hsapiens.UCSC.hg38
 txdb <- makeTxDbFromGFF("gencode.v38.annotaton.gtf.gz", organism="Homo sapiens")
 
 ## truncate to maximum of 500 nts
-txdb_w500 <- truncateTxome(txdb, maxTxLength=500)
+txdb_w500 <- truncate3primeTxome(txdb, maxTxLength=500) # use `truncate5primeTxome` for 5' truncation
 
 ## export annotation
 exportGTF(txdb_w500, file="gencode.v38.txcutr_w500.gtf.gz")

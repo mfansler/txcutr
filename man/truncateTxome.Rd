@@ -2,30 +2,105 @@
 % Please edit documentation in R/truncateTxome.R
 \name{truncateTxome}
 \alias{truncateTxome}
+\alias{truncate3primeTxome}
+\alias{truncate3primeTxome,TxDb-method}
+\alias{truncate5primeTxome}
+\alias{truncate5primeTxome,TxDb-method}
 \alias{truncateTxome,TxDb-method}
 \title{Truncate Transcriptome}
 \usage{
-truncateTxome(txdb, maxTxLength = 500, ...)
+truncateTxome(
+  txdb,
+  maxTxLength = 500,
+  txEnd = "3prime",
+  overlapFile = NULL,
+  BPPARAM = bpparam(),
+  ...
+)
 
-\S4method{truncateTxome}{TxDb}(txdb, maxTxLength = 500, BPPARAM = bpparam())
+truncate3primeTxome(
+  txdb,
+  maxTxLength = 500,
+  overlapFile = NULL,
+  BPPARAM = bpparam(),
+  quiet = FALSE,
+  ...
+)
+
+\S4method{truncate3primeTxome}{TxDb}(
+  txdb,
+  maxTxLength = 500,
+  overlapFile = NULL,
+  BPPARAM = bpparam(),
+  quiet = FALSE,
+  ...
+)
+
+truncate5primeTxome(
+  txdb,
+  maxTxLength = 300,
+  overlapFile = NULL,
+  BPPARAM = bpparam(),
+  quiet = FALSE,
+  ...
+)
+
+\S4method{truncate5primeTxome}{TxDb}(
+  txdb,
+  maxTxLength = 300,
+  overlapFile = NULL,
+  BPPARAM = bpparam(),
+  quiet = FALSE,
+  ...
+)
+
+\S4method{truncateTxome}{TxDb}(
+  txdb,
+  maxTxLength = 500,
+  txEnd = "3prime",
+  overlapFile = NULL,
+  BPPARAM = bpparam()
+)
 }
 \arguments{
-\item{txdb}{a \code{TxDb} object}
+\item{txdb}{a \code{TxDb} object representing the transcriptome annotation}
 
-\item{maxTxLength}{the maximum length of transcripts}
+\item{maxTxLength}{the maximum length of transcripts. Defaults to 500 bp}
 
-\item{...}{additional arguments}
+\item{txEnd}{transcript truncation end, either \verb{3prime} (default) or
+\verb{5prime}.}
+
+\item{overlapFile}{optional path to export a CSV file containing transcript
+overlaps (query_transcript, subject_transcript) post-truncation. If NULL
+(default), no file is exported.}
 
 \item{BPPARAM}{A \linkS4class{BiocParallelParam} object specifying whether
 and how the method should be parallelized.}
+
+\item{quiet}{suppress progress messages. Only available for
+\code{truncate3primeTxome} and \code{truncate5primeTxome}. Defaults to
+FALSE}
 }
 \value{
 a \code{TxDb} object
-
-a \code{TxDb} object
 }
 \description{
-Truncate Transcriptome
+Truncate transcripts to a specific maximum length from either the 3' or 5'
+end, keeping only the terminal portion of each transcript.
+}
+\details{
+\code{truncate3primeTxome} and \code{truncate5primeTxome} are
+wrappers that call \code{truncateTxome} with \code{txEnd} preset to
+"3prime" or "5prime" respectively. They also provide a \code{quiet}
+parameter to suppress messages.
+
+The function performs the following steps:
+\enumerate{
+\item Truncates each transcript to the specified maximum length from the chosen end
+\item Identifies duplicate transcripts (transcripts
+with identical coordinates belonging to the same gene) and removes them to avoid redundancy
+\item Rebuilds the TxDb object with updated gene, transcript, and exon ranges
+}
 }
 \examples{
 library(TxDb.Scerevisiae.UCSC.sacCer3.sgdGene)
@@ -41,7 +116,20 @@ txdb_w500 <- truncateTxome(txdb)
 txdb_w500
 
 ## last 100 nts per tx
-txdb_w100 <- truncateTxome(txdb, maxTxLength=100)
+txdb_w100 <- truncateTxome(txdb, maxTxLength = 100)
 txdb_w100
+
+## first 500 nts per tx (5' truncation)
+txdb_5p_w500 <- truncateTxome(txdb, txEnd = "5prime")
+txdb_5p_w500
+
+## using convenience wrapper. Same as truncateTxome(..., txEnd = "3prime")
+txdb_3p <- truncate3primeTxome(txdb, maxTxLength = 500)
+
+## Suppress messages with quiet parameter
+txdb_quiet <- truncate3primeTxome(txdb, quiet = TRUE)
+
+## Export overlap information
+txdb_w500 <- truncateTxome(txdb, overlapFile = tempfile())
 
 }

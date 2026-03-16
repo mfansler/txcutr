@@ -19,7 +19,8 @@ reads from the transcript ends. Quantification of isoform usage can be
 improved by using truncated versions of transcriptome annotations when
 assigning such reads to isoforms. The `txcutr` package implements some
 convenience methods for readily generating such truncated annotations
-and their corresponding sequences.
+from either their 5’ or 3’ transcript ends and their corresponding
+sequences.
 
 ## Installation instructions
 
@@ -64,7 +65,7 @@ install this in your *base* environment!**
 A typical workflow for `txcutr` involves
 
 - loading an existing annotation as `TxDb` object
-- truncating the annotation
+- truncating the annotation from the 3’ or 5’ end
 - exporting the truncated annotation (GTF)
 - exporting supporting files (FASTA, merge TSV)
 
@@ -80,7 +81,7 @@ hg38 <- BSgenome.Hsapiens.UCSC.hg38
 txdb <- makeTxDbFromGFF("gencode.v38.annotaton.gtf.gz", organism="Homo sapiens")
 
 ## truncate to maximum of 500 nts
-txdb_w500 <- truncateTxome(txdb, maxTxLength=500)
+txdb_w500 <- truncate3primeTxome(txdb, maxTxLength=500) # use `truncate5primeTxome` for 5' truncation
 
 ## export annotation
 exportGTF(txdb_w500, file="gencode.v38.txcutr_w500.gtf.gz")
@@ -103,8 +104,10 @@ Please run this yourself to check for any updates on how to cite
 print(citation('txcutr'), bibtex = TRUE)
 #> To cite package 'txcutr' in publications use:
 #> 
-#>   Fansler M (2025). _txcutr: Transcriptome CUTteR_. R package version
-#>   1.15.2, <https://github.com/mfansler/txcutr>.
+#>   Fansler M (2025). _txcutr: Transcriptome CUTteR_.
+#>   doi:10.18129/B9.bioc.txcutr
+#>   <https://doi.org/10.18129/B9.bioc.txcutr>, R package version 1.16.0,
+#>   <https://bioconductor.org/packages/txcutr>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
@@ -112,8 +115,9 @@ print(citation('txcutr'), bibtex = TRUE)
 #>     title = {txcutr: Transcriptome CUTteR},
 #>     author = {Mervin Fansler},
 #>     year = {2025},
-#>     note = {R package version 1.15.2},
-#>     url = {https://github.com/mfansler/txcutr},
+#>     note = {R package version 1.16.0},
+#>     url = {https://bioconductor.org/packages/txcutr},
+#>     doi = {10.18129/B9.bioc.txcutr},
 #>   }
 ```
 
@@ -136,7 +140,7 @@ contributing to this project, you agree to abide by its terms.
   *[rcmdcheck](https://CRAN.R-project.org/package=rcmdcheck)* customized
   to use [Bioconductor’s docker
   containers](https://www.bioconductor.org/help/docker/) and
-  *[BiocCheck](https://bioconductor.org/packages/3.20/BiocCheck)*.
+  *[BiocCheck](https://bioconductor.org/packages/3.22/BiocCheck)*.
 - Code coverage assessment is possible thanks to
   [codecov](https://codecov.io/gh) and
   *[covr](https://CRAN.R-project.org/package=covr)*.
@@ -152,4 +156,4 @@ contributing to this project, you agree to abide by its terms.
 For more details, check the `dev` directory.
 
 This package was developed using
-*[biocthis](https://bioconductor.org/packages/3.20/biocthis)*.
+*[biocthis](https://bioconductor.org/packages/3.22/biocthis)*.

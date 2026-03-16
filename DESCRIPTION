@@ -6,15 +6,21 @@ Description: Various mRNA sequencing library preparation methods generate
     truncated versions of transcriptome annotations, both at the alignment or 
     pseudo-alignment stage, as well as in downstream analysis. This package 
     implements some convenience methods for readily generating such truncated 
-    annotations and their corresponding sequences.
-Version: 1.15.2
-Date: 2025-09-07
-Authors@R: 
+    annotations from either their 5' or 3' transcript ends and their 
+    corresponding sequences.
+Version: 1.17.0
+Date: 2026-03-10
+Authors@R: c(
     person(given = "Mervin",
            family = "Fansler",
            role = c("aut", "cre"),
            email = "mervin.fansler@bric.ku.dk",
-           comment = c(ORCID = "0000-0002-4108-4218"))
+           comment = c(ORCID = "0000-0002-4108-4218")),
+    person(given = "Guillermo",
+           family = "Rocamora Pérez",
+           role = c("ctb"),
+           email = "guillermorocamora@gmail.com",
+           comment = c(ORCID = "0000-0002-4795-3648")))
 License: GPL-3
 URL: https://github.com/mfansler/txcutr
 BugReports: https://github.com/mfansler/txcutr/issues
@@ -36,7 +42,7 @@ Imports:
     methods,
     utils
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.3
 biocViews: 
     Alignment,
     Annotation,
@@ -52,6 +58,7 @@ Suggests:
     testthat (>= 3.0.0),
     TxDb.Scerevisiae.UCSC.sacCer3.sgdGene,
     BSgenome.Scerevisiae.UCSC.sacCer3,
-    GenomeInfoDbData
+    GenomeInfoDbData,
+    withr
 VignetteBuilder: knitr
 Config/testthat/edition: 3

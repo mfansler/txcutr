@@ -4,12 +4,14 @@
 \alias{.clipTranscript}
 \title{Clip Transcript to Given Length}
 \usage{
-.clipTranscript(gr, maxTxLength)
+.clipTranscript(gr, maxTxLength, txEnd)
 }
 \arguments{
 \item{gr}{a \code{GRanges} object}
 
 \item{maxTxLength}{a positive integer}
+
+\item{txEnd}{transcript truncation end}
 }
 \value{
 the clipped \code{GRanges} object

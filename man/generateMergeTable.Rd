@@ -43,7 +43,7 @@ txdb_w500 <- truncateTxome(txdb)
 txdb_w500
 
 ## last 100 nts per tx
-txdb_w100 <- truncateTxome(txdb, maxTxLength=100)
+txdb_w100 <- truncateTxome(txdb, maxTxLength = 100)
 txdb_w100
 
 }
